@@ -96,7 +96,7 @@ class Resume extends StatelessWidget {
                               children: [
                                 TextSpan(
                                     text:
-                                        'esponsible and ambitious student with the excellent time management. Aiming to use my knowledge and resources to combine technology to creativity / art . Poseese proper Communication skills and strong work ethics that will aid our team in meeting its future  milestones.',
+                                        'esponsible and ambitious student with excellent time management. Aiming to use knowledge and resources to combine technology with Creativity / Art . Possess proper Communication skills and strong work ethics that will aid our team in meeting its future  milestones.',
                                     style: TextStyle(
                                         fontSize: 17,
                                         color: Colors.black,
