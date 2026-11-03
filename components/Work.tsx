@@ -25,7 +25,7 @@ function Artwork({ title, colors }: { title: string; colors: [string, string] })
   );
 }
 
-const primaryLink = (p: Project) => p.live ?? p.code ?? "#";
+const primaryLink = (p: Project) => p.live ?? p.code;
 
 export function Work() {
   const [active, setActive] = useState<number | null>(null);
@@ -59,7 +59,17 @@ export function Work() {
 
       {/* Phones: one column of cards · tablets: two columns · laptops+: typographic rows with a hover preview */}
       <ul className="grid gap-x-8 gap-y-14 md:grid-cols-2 lg:block" onPointerLeave={() => setActive(null)}>
-        {projects.map((p, i) => (
+        {projects.map((p, i) => {
+          const href = primaryLink(p);
+          // Only the inner text shifts — transforming the link would shrink its stretched click area.
+          const title = (
+            <span
+              className={`inline-block transition-transform duration-700 ease-out-expo ${active === i ? "translate-x-4 font-serif italic lg:translate-x-8" : ""}`}
+            >
+              {p.title}
+            </span>
+          );
+          return (
           <li key={p.title} className="relative flex flex-col">
             <motion.span
               className="absolute inset-x-0 top-0 hidden h-px origin-left bg-line lg:block"
@@ -70,7 +80,7 @@ export function Work() {
             />
 
             <div
-              data-cursor="View"
+              data-cursor={href ? "View" : undefined}
               onPointerEnter={(e) => {
                 // Hover-only effect: a tap on a touch screen would otherwise leave the other rows dimmed.
                 if (e.pointerType !== "mouse") return;
@@ -82,19 +92,18 @@ export function Work() {
             >
               <span className="pt-2 text-sm text-muted lg:pt-0">{String(i + 1).padStart(2, "0")}</span>
               {/* The title's link stretches over the whole row; the Live/Code links sit above it. */}
-              <a
-                href={primaryLink(p)}
-                target="_blank"
-                rel="noreferrer"
-                className="text-4xl tracking-tight after:absolute after:inset-0 lg:text-7xl"
-              >
-                {/* Only the inner text shifts — transforming the link would shrink its stretched click area. */}
-                <span
-                  className={`inline-block transition-transform duration-700 ease-out-expo ${active === i ? "translate-x-4 font-serif italic lg:translate-x-8" : ""}`}
+              {href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-4xl tracking-tight after:absolute after:inset-0 lg:text-7xl"
                 >
-                  {p.title}
-                </span>
-              </a>
+                  {title}
+                </a>
+              ) : (
+                <h3 className="text-4xl font-normal tracking-tight lg:text-7xl">{title}</h3>
+              )}
               <div className="col-start-2 text-sm lg:col-start-auto">
                 {p.category}
                 <p className="mt-1 max-w-xs text-muted">{p.description}</p>
@@ -105,6 +114,7 @@ export function Work() {
                     </li>
                   ))}
                 </ul>
+                {(p.live || p.code) && (
                 <div className="relative z-10 mt-3 flex gap-5">
                   {p.live && (
                     <RollLink href={p.live} external>
@@ -117,14 +127,15 @@ export function Work() {
                     </RollLink>
                   )}
                 </div>
+                )}
               </div>
               <span className="hidden text-right text-sm text-muted lg:block">{p.year}</span>
             </div>
 
             {/* Below laptop size there's no hover, so the artwork sits in the card itself. */}
             <motion.a
-              href={primaryLink(p)}
-              target="_blank"
+              href={href}
+              target={href ? "_blank" : undefined}
               rel="noreferrer"
               tabIndex={-1}
               aria-hidden
@@ -145,7 +156,8 @@ export function Work() {
               </motion.div>
             </motion.a>
           </li>
-        ))}
+          );
+        })}
         <li className="hidden h-px bg-line lg:block" />
       </ul>
 

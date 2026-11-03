@@ -28,7 +28,7 @@ export default async function Image() {
               {site.lastName}
             </div>
           </div>
-          <div style={{ fontSize: 26, color: "#555" }}>Full-stack products · Flutter apps · Motion</div>
+          <div style={{ fontSize: 26, color: "#555" }}>{site.focus} · Artist</div>
         </div>
         <img
           src={`data:image/jpeg;base64,${portrait}`}

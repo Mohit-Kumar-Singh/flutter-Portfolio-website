@@ -32,7 +32,8 @@ export function RevealText({
       <span className="sr-only">{text}</span>
       {words.map((word, i) => (
         <span key={i} aria-hidden>
-          <span className="-mb-[0.12em] inline-block overflow-hidden pb-[0.12em] align-top">
+          {/* Padding (cancelled by negative margins) keeps descenders and italic overhang inside the mask. */}
+          <span className="-mx-[0.08em] -mb-[0.25em] inline-block overflow-hidden px-[0.08em] pb-[0.25em] align-top">
             <motion.span
               className="inline-block"
               variants={{ hidden: { y: "110%" }, show: { y: "0%" } }}

@@ -9,7 +9,8 @@ import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 function Letters({ text, play, delay, className }: { text: string; play: boolean; delay: number; className?: string }) {
   return (
-    <span className={`flex overflow-hidden pb-[0.06em] ${className ?? ""}`}>
+    // The mask needs room for descenders (the "g" in Singh) and italic overhang; negative margins keep the layout unchanged.
+    <span className={`-mx-[0.08em] -mb-[0.22em] flex overflow-hidden px-[0.08em] pb-[0.22em] ${className ?? ""}`}>
       <span className="sr-only">{text}</span>
       {[...text].map((ch, i) => (
         <motion.span
@@ -56,7 +57,7 @@ export function Hero() {
               </span>
               {site.status}
             </span>
-            Full-stack · Flutter · Motion
+            {site.focus.replace(" & ", " · ")} · Artist
           </motion.div>
           <motion.div
             className="text-right text-muted"

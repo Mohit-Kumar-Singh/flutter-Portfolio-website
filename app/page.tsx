@@ -1,4 +1,5 @@
 import { About } from "@/components/About";
+import { Art } from "@/components/Art";
 import { Contact } from "@/components/Contact";
 import { Experience } from "@/components/Experience";
 import { Hero } from "@/components/Hero";
@@ -21,8 +22,9 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Work />
-        <Marquee text="Design — Develop — Animate —" />
+        <Marquee text="DevOps — Automate — Create —" />
         <About />
+        <Art />
         <Skills />
         <Journey />
         <Contact />

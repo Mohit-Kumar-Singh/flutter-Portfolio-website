@@ -19,8 +19,8 @@ const instrument = Instrument_Serif({
 });
 
 const name = `${site.firstName} ${site.lastName}`;
-const title = `${name} — ${site.role}`;
-const description = `Portfolio of ${name}: full-stack products, Flutter apps and quiet, deliberate interfaces.`;
+const title = `${name} — ${site.role} · ${site.focus}`;
+const description = `Portfolio of ${name}: ${site.role.toLowerCase()} at Volkswagen Group working on ${site.focus.replace("&", "and").toLowerCase()} — and an artist.`;
 
 // opengraph-image.tsx and icon.tsx are picked up automatically; metadataBase makes their URLs absolute.
 export const metadata: Metadata = {

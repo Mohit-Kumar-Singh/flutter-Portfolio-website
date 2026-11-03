@@ -7,6 +7,8 @@ export const site = {
   company: "Volkswagen Group Technology Solutions India",
   // Short status shown with the pulsing dot in the hero.
   status: "Software Developer at Volkswagen Group",
+  // What you focus on — shown under the status line, in the share image and the page title.
+  focus: "DevOps & Automation",
   location: "Delhi, India",
   timeZone: "Asia/Kolkata",
   year: "2026",
@@ -17,19 +19,19 @@ export const site = {
   resume: "",
   portrait: "/images/portrait.jpg",
   intro:
-    "Software developer at Volkswagen Group. Outside work I build full-stack products end to end — from Supabase backends to interfaces with an artist's eye for detail.",
+    "DevOps at Volkswagen Group — I automate pipelines and help teams smooth out the processes around them. Off-screen I'm an artist: wall murals, paper carving, and once, my own café.",
   about:
-    "I've always wanted to combine technology with creativity and art. I led my college's fine-art society, started with Flutter apps, and today I write software at Volkswagen Group while building full-stack products of my own — databases, interfaces and the small details in between.",
+    "I've always lived between technology and art. I led my college's fine-art society for three years, painted walls as a freelance muralist and ran a café — and today I work in DevOps at Volkswagen Group, automating the work nobody should do by hand.",
   education: [
     { title: "B.Tech, Computer Science", place: "AKGEC, Ghaziabad · 2019–2023" },
     { title: "Class XII — 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
   ],
-  offScreen: "Art, paper carving, badminton, and one more episode of a good series.",
+  offScreen: "Badminton, a sketchbook, and one more episode of a good series.",
   // "At a glance" numbers in the About section.
   stats: [
     { value: 3, suffix: "+", label: "Years at Volkswagen Group" },
-    { value: 6, label: "Projects shipped" },
     { value: 3, suffix: "+", label: "Years leading Team Footprints" },
+    { value: 1, label: "Café I ran" },
   ],
   socials: [
     { label: "GitHub", href: "https://github.com/Mohit-Kumar-Singh" },
@@ -38,29 +40,37 @@ export const site = {
   ],
 };
 
+// The Art section.
+export const art = {
+  intro:
+    "Long before pipelines, I painted. Walls, paper, a whole café — art is where I learned patience, craft and finishing what I start.",
+  highlights: [
+    { title: "Freelance wall murals", detail: "Large hand-painted murals for homes and businesses, from sketch to final coat." },
+    { title: "Ran a café", detail: "Owned and ran a café end to end — and painted its walls myself." },
+    { title: "Team Footprints", detail: "Artist and head of operations of AKGEC's fine-art society for 3+ years." },
+    { title: "Paper carving", detail: "Detailed cut-paper pieces — my quietest, most patient work." },
+  ],
+};
+
+// Drop artwork photos into public/art/ and list them here — the gallery in the Art section appears automatically.
+export const artworks: { src: string; title: string; detail?: string }[] = [];
+
 export const skills: { group: string; items: string[] }[] = [
-  { group: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Motion"] },
-  { group: "Backend & Data", items: ["Supabase", "PostgreSQL", "SQL", "Java", "Spring Boot", "REST APIs"] },
-  { group: "Mobile", items: ["Flutter", "Dart", "PWAs"] },
-  { group: "Tools & More", items: ["C++ & DSA", "Git & GitHub", "Vercel", "Figma", "WhatsApp Cloud API"] },
+  { group: "DevOps & Automation", items: ["CI/CD", "Docker", "GitHub Actions", "Linux", "Scripting", "Process automation"] },
+  { group: "AI", items: ["LLM apps", "Prompt engineering", "AI agents", "Python"] },
+  { group: "Code & Data", items: ["Java", "Spring Boot", "SQL", "TypeScript", "C++ & DSA", "Git & GitHub"] },
+  { group: "Art", items: ["Wall murals", "Painting", "Paper carving", "Art direction"] },
 ];
 
 export const timeline: { year: string; items: { title: string; detail: string }[] }[] = [
   {
-    year: "2026",
-    items: [
-      { title: "Building Milk Garage", detail: "Operations console and WhatsApp ordering bot for a dairy business — herd, sales and finances in one PWA." },
-      { title: "Shipped IPO Ledger", detail: "Tracks IPO applications across demat accounts with automatic WhatsApp alerts on allotment." },
-    ],
-  },
-  {
     year: "2023",
     items: [
       {
-        title: "Software Developer · Volkswagen Group",
-        detail: "Joined Volkswagen Group Technology Solutions India full-time in Gurugram (Aug 2023 – present).",
+        title: "DevOps · Volkswagen Group",
+        detail: "Joined Volkswagen Group Technology Solutions India in Gurugram (Aug 2023 – present) — automating pipelines and helping teams improve their processes.",
       },
-      { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: a Flutter app that detects malicious URLs." },
+      { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: an app that detects malicious URLs." },
     ],
   },
   {
@@ -70,7 +80,6 @@ export const timeline: { year: string; items: { title: string; detail: string }[
         title: "Team Head · Team Footprints",
         detail: "Artist and head of operations of AKGEC's fine-art society for 3+ years — ran blood donation camps, anti-ragging drives and Azadi Ka Amrit Mahotsav events.",
       },
-      { title: "Conatus trainee", detail: "Learned Flutter by shipping apps — chat, meals, expense tracker and my first portfolio." },
     ],
   },
   {
@@ -89,7 +98,7 @@ export type Project = {
   description: string;
   year: string;
   stack: string[];
-  // At least one of these; `live` is preferred as the primary link.
+  // Optional links; `live` is preferred as the primary link. Items with neither are not clickable.
   live?: string;
   code?: string;
   // Placeholder artwork until real images are added (two gradient stops).
@@ -98,32 +107,29 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Milk Garage",
-    category: "Operations PWA · Supabase",
-    description: "Runs a dairy business end to end — herd, deliveries, sales and a WhatsApp ordering bot.",
-    year: "2026",
-    stack: ["React", "TypeScript", "Supabase", "Tailwind", "PWA"],
-    live: "https://milk-garage.vercel.app",
-    code: "https://github.com/Mohit-Kumar-Singh/M-cli",
-    colors: ["#11161C", "#5FA585"],
+    title: "Volkswagen Group",
+    category: "DevOps & Automation · Full-time",
+    description:
+      "I automate build and release pipelines and the repetitive work around them, and help other teams streamline their processes so they ship faster.",
+    year: "2023–now",
+    stack: ["DevOps", "CI/CD", "Automation", "Process improvement"],
+    colors: ["#0B1B2E", "#4A8FD9"],
   },
   {
-    title: "IPO Ledger",
-    category: "Full-stack · WhatsApp API",
-    description: "Tracks IPO applications across demat accounts with WhatsApp alerts on allotment.",
-    year: "2026",
-    stack: ["React", "Vite", "Supabase", "Edge Functions", "WhatsApp API"],
-    code: "https://github.com/Mohit-Kumar-Singh/ipo-ledger",
-    colors: ["#14161F", "#7B8CFF"],
+    title: "Wall Murals",
+    category: "Freelance artist",
+    description: "Hand-painted murals for homes, cafés and businesses — from first sketch to the final wall.",
+    year: "",
+    stack: ["Murals", "Painting", "Client work"],
+    colors: ["#2B1A12", "#E8894A"],
   },
   {
-    title: "Malicious URL",
-    category: "Flutter · Final-year project",
-    description: "A mobile app that flags malicious links before you open them.",
-    year: "2023",
-    stack: ["Flutter", "Dart"],
-    code: "https://github.com/Mohit-Kumar-Singh/malicious-url-",
-    colors: ["#1B1B1B", "#FF4A1C"],
+    title: "The Café",
+    category: "Owner · Operations",
+    description: "Ran my own café — menu, people, suppliers and the space itself, which I painted.",
+    year: "",
+    stack: ["Business", "Operations", "Interior art"],
+    colors: ["#2A2018", "#C9A27A"],
   },
   {
     title: "Employee System",
@@ -133,23 +139,5 @@ export const projects: Project[] = [
     stack: ["Java", "Spring Boot", "REST"],
     code: "https://github.com/Mohit-Kumar-Singh/ems-spring-assignment-3",
     colors: ["#3D3428", "#E6C79C"],
-  },
-  {
-    title: "Chat App",
-    category: "Flutter · Mobile",
-    description: "Real-time messaging app from my Flutter beginnings.",
-    year: "2020",
-    stack: ["Flutter", "Dart"],
-    code: "https://github.com/Mohit-Kumar-Singh/Chat-app",
-    colors: ["#2F3B2F", "#B9C9A7"],
-  },
-  {
-    title: "First Portfolio",
-    category: "Flutter · Conatus",
-    description: "My very first portfolio, built as a Flutter app during Conatus training.",
-    year: "2020",
-    stack: ["Flutter", "Dart"],
-    code: "https://github.com/Mohit-Kumar-Singh/flutter-Portfolio-website/tree/flutter-legacy",
-    colors: ["#20182A", "#D69BC6"],
   },
 ];

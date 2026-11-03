@@ -12,6 +12,7 @@ import { Magnetic, RollLink } from "./ui";
 const LINKS: NavLink[] = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "Art", href: "#art" },
   { label: "Journey", href: "#journey" },
   { label: "Contact", href: "#contact" },
 ];
