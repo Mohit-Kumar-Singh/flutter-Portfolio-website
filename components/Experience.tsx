@@ -2,7 +2,7 @@
 
 import Lenis from "lenis";
 import { AnimatePresence, MotionConfig } from "motion/react";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Cursor } from "./Cursor";
 import { Preloader } from "./Preloader";
 
@@ -13,6 +13,8 @@ export const useLoaded = () => useContext(LoadedContext);
 export function Experience({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   const lenis = useRef<Lenis | null>(null);
+  // Stable so the preloader's effect doesn't restart its animation on re-render.
+  const handleDone = useCallback(() => setLoaded(true), []);
 
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -30,7 +32,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
   return (
     <MotionConfig reducedMotion="user">
       <LoadedContext.Provider value={loaded}>
-        <AnimatePresence>{!loaded && <Preloader key="preloader" onDone={() => setLoaded(true)} />}</AnimatePresence>
+        <AnimatePresence>{!loaded && <Preloader key="preloader" onDone={handleDone} />}</AnimatePresence>
         {children}
         <Cursor />
         <div className="grain" aria-hidden />

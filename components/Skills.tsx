@@ -1,0 +1,58 @@
+"use client";
+
+import { motion } from "motion/react";
+import { skills } from "@/lib/content";
+import { EASE_OUT } from "@/lib/motion";
+import { RevealText } from "./ui";
+
+export function Skills() {
+  return (
+    <section id="skills" className="px-5 py-24 md:px-10 md:py-40">
+      <div className="mb-14 flex items-end justify-between md:mb-20">
+        <h2 className="text-5xl tracking-tight md:text-8xl">
+          <RevealText text="The" />{" "}
+          <span className="font-serif italic">
+            <RevealText text="toolkit" delay={0.1} />
+          </span>
+        </h2>
+        <span className="text-sm text-muted">(Skills)</span>
+      </div>
+
+      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        {skills.map((g, gi) => (
+          <div key={g.group} className="relative pt-6">
+            <motion.span
+              className="absolute inset-x-0 top-0 h-px origin-left bg-line"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: EASE_OUT, delay: gi * 0.1 }}
+            />
+            <h3 className="mb-5 flex justify-between text-sm text-muted">
+              <span>{g.group}</span>
+              <span>{String(gi + 1).padStart(2, "0")}</span>
+            </h3>
+            <motion.ul
+              className="flex flex-wrap gap-2"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+              transition={{ staggerChildren: 0.05, delayChildren: gi * 0.1 }}
+            >
+              {g.items.map((s) => (
+                <motion.li
+                  key={s}
+                  variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
+                  transition={{ duration: 0.6, ease: EASE_OUT }}
+                  className="rounded-full border border-ink/15 px-4 py-2 text-sm transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-paper"
+                >
+                  {s}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

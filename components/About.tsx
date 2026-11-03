@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, MotionValue, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { site } from "@/lib/content";
-import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
+import { EASE_IN_OUT } from "@/lib/motion";
 import { RevealText } from "./ui";
 
 function Word({ word, progress, range }: { word: string; progress: MotionValue<number>; range: [number, number] }) {
@@ -65,24 +65,6 @@ export function About() {
           </p>
 
           <div className="mt-24 grid gap-12 md:grid-cols-2">
-            <div>
-              <h3 className="mb-6 text-sm text-muted">What I do</h3>
-              <ul>
-                {site.services.map((s, i) => (
-                  <li key={s} className="relative py-4 text-xl">
-                    <motion.span
-                      className="absolute inset-x-0 bottom-0 h-px origin-left bg-line"
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, ease: EASE_OUT, delay: i * 0.1 }}
-                    />
-                    <RevealText text={s} delay={i * 0.1} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex flex-col gap-12">
               <div>
                 <h3 className="mb-6 text-sm text-muted">Education</h3>
                 {site.education.map((e, i) => (
@@ -102,7 +84,6 @@ export function About() {
                   <RevealText text={site.offScreen} stagger={0.02} />
                 </p>
               </div>
-            </div>
           </div>
         </div>
       </div>

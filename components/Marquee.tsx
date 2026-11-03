@@ -4,6 +4,7 @@ import {
   motion,
   useAnimationFrame,
   useMotionValue,
+  useInView,
   useScroll,
   useSpring,
   useTransform,
@@ -24,8 +25,11 @@ export function Marquee({ text, baseVelocity = -2 }: { text: string; baseVelocit
   const factor = useTransform(velocity, [0, 1000], [0, 5], { clamp: false });
   const direction = useRef(1);
   const x = useTransform(baseX, (v) => `${wrap(-25, -50, v)}%`);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref);
 
   useAnimationFrame((_, delta) => {
+    if (!inView) return; // no work while off-screen
     let move = direction.current * baseVelocity * (delta / 1000);
     if (factor.get() < 0) direction.current = -1;
     else if (factor.get() > 0) direction.current = 1;
@@ -34,7 +38,7 @@ export function Marquee({ text, baseVelocity = -2 }: { text: string; baseVelocit
   });
 
   return (
-    <div className="overflow-hidden whitespace-nowrap py-10" aria-hidden>
+    <div ref={ref} className="overflow-hidden whitespace-nowrap py-10" aria-hidden>
       <motion.div className="flex whitespace-nowrap" style={{ x }}>
         {Array.from({ length: 4 }).map((_, i) => (
           <span key={i} className="mr-[4vw] block font-serif text-[16vw] italic leading-none tracking-tight md:text-[11vw]">

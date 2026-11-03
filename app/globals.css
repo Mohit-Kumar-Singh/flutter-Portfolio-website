@@ -16,7 +16,6 @@
   --color-line: var(--line);
   --font-sans: var(--font-geist-sans);
   --font-serif: var(--font-instrument);
-  --font-mono: var(--font-geist-mono);
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 

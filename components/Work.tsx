@@ -58,11 +58,13 @@ export function Work() {
               target="_blank"
               rel="noreferrer"
               data-cursor="View"
-              onPointerEnter={() => {
+              onPointerEnter={(e) => {
+                // Hover-only effect: a tap on a phone would otherwise leave the other rows dimmed.
+                if (e.pointerType !== "mouse") return;
                 setActive(i);
                 setLast(i);
               }}
-              className="grid grid-cols-[2.5rem_1fr] items-center gap-y-2 py-8 transition-opacity duration-500 md:grid-cols-[4rem_1fr_14rem_5rem] md:py-11"
+              className="grid grid-cols-[2.5rem_1fr] items-center gap-y-2 py-8 transition-opacity duration-500 md:grid-cols-[4rem_1fr_18rem_5rem] md:py-11"
               style={{ opacity: active === null || active === i ? 1 : 0.3 }}
             >
               <span className="text-sm text-muted">{String(i + 1).padStart(2, "0")}</span>
@@ -71,7 +73,10 @@ export function Work() {
               >
                 {p.title}
               </span>
-              <span className="col-start-2 text-sm text-muted md:col-start-auto">{p.category}</span>
+              <span className="col-start-2 text-sm md:col-start-auto">
+                {p.category}
+                <span className="mt-1 block max-w-xs text-muted">{p.description}</span>
+              </span>
               <span className="hidden text-right text-sm text-muted md:block">{p.year}</span>
             </a>
             {/* mobile: show the artwork inline */}

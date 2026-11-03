@@ -94,19 +94,22 @@ export function RollLink({
   external?: boolean;
 }) {
   return (
+    // Vertical padding (cancelled by negative margin) gives a ~44px tap target without changing layout.
     <a
       href={href}
-      className={`group relative inline-flex overflow-hidden ${className ?? ""}`}
+      className={`group -my-3 inline-flex py-3 ${className ?? ""}`}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
     >
-      <span className="block transition-transform duration-500 ease-out-expo group-hover:-translate-y-full">
-        {children}
-      </span>
-      <span
-        aria-hidden
-        className="absolute inset-0 translate-y-full font-serif italic transition-transform duration-500 ease-out-expo group-hover:translate-y-0"
-      >
-        {children}
+      <span className="relative inline-flex overflow-hidden">
+        <span className="block transition-transform duration-500 ease-out-expo group-hover:-translate-y-full">
+          {children}
+        </span>
+        <span
+          aria-hidden
+          className="absolute inset-0 translate-y-full font-serif italic transition-transform duration-500 ease-out-expo group-hover:translate-y-0"
+        >
+          {children}
+        </span>
       </span>
     </a>
   );

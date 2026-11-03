@@ -28,12 +28,17 @@ export function Cursor() {
       y.set(e.clientY);
       setVisible(true);
     };
+    // Keep the previous object when nothing changed so React skips the re-render.
+    const update = (next: Mode) =>
+      setMode((prev) =>
+        prev.kind === next.kind && (prev.kind !== "label" || prev.text === (next as typeof prev).text) ? prev : next,
+      );
     const over = (e: PointerEvent) => {
       const el = e.target as HTMLElement;
       const labelled = el.closest<HTMLElement>("[data-cursor]");
-      if (labelled) return setMode({ kind: "label", text: labelled.dataset.cursor ?? "" });
-      if (el.closest("a, button")) return setMode({ kind: "link" });
-      setMode({ kind: "default" });
+      if (labelled) return update({ kind: "label", text: labelled.dataset.cursor ?? "" });
+      if (el.closest("a, button")) return update({ kind: "link" });
+      update({ kind: "default" });
     };
     const leave = () => setVisible(false);
 

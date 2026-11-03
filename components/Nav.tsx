@@ -22,7 +22,7 @@ export function Nav() {
       transition={{ duration: 1, ease: EASE_OUT, delay: 0.9 }}
     >
       <Magnetic strength={0.25}>
-        <a href="#top" className="group flex items-center gap-1 text-sm font-medium">
+        <a href="#top" className="group -my-3 flex items-center gap-1 py-3 text-sm font-medium">
           <span className="inline-block transition-transform duration-700 ease-out-expo group-hover:rotate-[360deg]">©</span>
           <span className="relative overflow-hidden">
             <span className="block transition-transform duration-500 ease-out-expo group-hover:-translate-x-full">
