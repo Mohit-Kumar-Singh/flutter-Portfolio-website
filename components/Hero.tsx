@@ -61,7 +61,7 @@ export function Hero() {
             </span>
           </motion.div>
           <motion.div
-            className="text-right text-muted"
+            className="hidden text-right text-muted sm:block"
             initial={{ opacity: 0 }}
             animate={loaded ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 1.1 }}
@@ -115,7 +115,7 @@ export function Hero() {
                     </a>
                   </Magnetic>
                 )}
-                <div className="flex gap-5 text-sm text-muted">
+                <div className="hidden gap-5 text-sm text-muted sm:flex">
                   {site.socials.map((s) => (
                     <RollLink key={s.label} href={s.href} external>
                       {s.label}

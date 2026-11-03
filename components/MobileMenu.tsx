@@ -6,6 +6,7 @@ import { site } from "@/lib/content";
 import { EASE_IN_OUT, SPRING_GENTLE } from "@/lib/motion";
 import { feedback } from "@/lib/feedback";
 import { useScrollControls } from "./Experience";
+import { SoundToggle } from "./SoundToggle";
 
 export type NavLink = { label: string; href: string };
 
@@ -87,6 +88,10 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
           >
+            <div className="flex items-center justify-between text-paper/60">
+              <span>Interface sounds</span>
+              <SoundToggle />
+            </div>
             <a href={`mailto:${site.email}`} className="-my-2 py-2 text-lg">
               {site.email}
             </a>

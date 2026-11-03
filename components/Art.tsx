@@ -10,7 +10,7 @@ import { Magnetic, RevealText } from "./ui";
 // The artist side: murals, the café, the fine-art society — plus a gallery once photos are added.
 export function Art() {
   return (
-    <section id="art" className="px-5 py-24 md:px-10 md:py-40">
+    <section id="art" className="px-5 py-20 md:px-10 md:py-40">
       <div className="mb-14 flex items-end justify-between md:mb-20">
         <h2 className="text-5xl tracking-tight md:text-8xl">
           <RevealText text="The other" />{" "}

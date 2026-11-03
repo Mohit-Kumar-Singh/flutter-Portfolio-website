@@ -13,7 +13,7 @@ export function Journey() {
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
   return (
-    <section id="journey" className="px-5 py-24 md:px-10 md:py-40">
+    <section id="journey" className="px-5 py-20 md:px-10 md:py-40">
       <div className="mb-14 flex items-end justify-between md:mb-20">
         <h2 className="text-5xl tracking-tight md:text-8xl">
           <RevealText text="The" />{" "}

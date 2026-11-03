@@ -14,7 +14,7 @@ export function Work() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section id="work" className="px-5 py-32 md:px-10 md:py-48">
+    <section id="work" className="px-5 py-20 md:px-10 md:py-48">
       <div className="mb-16 flex items-end justify-between md:mb-24">
         <h2 className="text-5xl tracking-tight md:text-8xl">
           <RevealText text="Selected" />{" "}
@@ -71,7 +71,7 @@ export function Work() {
                   <Icon name={p.icon} draw className="icon-wiggle mr-2 -mt-0.5 align-middle text-base" />
                   {p.category}
                   <p className="mt-1 max-w-xs text-muted">{p.description}</p>
-                  <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Tags">
+                  <ul className="mt-3 hidden flex-wrap gap-1.5 sm:flex" aria-label="Tags">
                     {p.stack.map((s) => (
                       <li key={s} className="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
                         {s}

@@ -53,9 +53,12 @@ export function Nav() {
               </Magnetic>
             ))}
           </div>
-          <Magnetic strength={0.4}>
-            <SoundToggle />
-          </Magnetic>
+          {/* On phones the sound switch lives in the menu to keep the bar light. */}
+          <span className="hidden sm:contents">
+            <Magnetic strength={0.4}>
+              <SoundToggle />
+            </Magnetic>
+          </span>
           <Magnetic strength={0.4}>
             <ThemeToggle />
           </Magnetic>

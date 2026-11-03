@@ -7,7 +7,7 @@ import { RevealText } from "./ui";
 
 export function Skills() {
   return (
-    <section id="skills" className="px-5 py-24 md:px-10 md:py-40">
+    <section id="skills" className="px-5 py-20 md:px-10 md:py-40">
       <div className="mb-14 flex items-end justify-between md:mb-20">
         <h2 className="text-5xl tracking-tight md:text-8xl">
           <RevealText text="The" />{" "}
@@ -32,8 +32,9 @@ export function Skills() {
               <span>{g.group}</span>
               <span>{String(gi + 1).padStart(2, "0")}</span>
             </h3>
+            <p className="text-lg leading-snug sm:hidden">{g.items.join(" · ")}</p>
             <motion.ul
-              className="flex flex-wrap gap-2"
+              className="hidden flex-wrap gap-2 sm:flex"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "0px 0px -10% 0px" }}

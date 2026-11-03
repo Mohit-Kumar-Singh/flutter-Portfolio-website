@@ -83,14 +83,14 @@ export function About() {
   const words = site.about.split(" ");
 
   return (
-    <section id="about" className="px-5 py-32 md:px-10 md:py-48">
+    <section id="about" className="px-5 py-20 md:px-10 md:py-48">
       <div className="grid gap-10 md:grid-cols-[1fr_3fr] md:gap-16">
         <div className="flex flex-col gap-6">
           <span className="text-sm text-muted">(About)</span>
           <Portrait />
         </div>
         <div>
-          <p ref={ref} className="text-3xl leading-[1.15] tracking-tight md:text-[3.4vw]">
+          <p ref={ref} className="text-2xl leading-[1.2] tracking-tight sm:text-3xl md:text-[3.4vw]">
             {words.map((w, i) => (
               <Word key={i} word={w} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]} />
             ))}
