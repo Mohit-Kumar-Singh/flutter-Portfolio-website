@@ -37,23 +37,39 @@ export const site = {
     { label: "GitHub", href: "https://github.com/Mohit-Kumar-Singh" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mohit-kumar-singh-mks" },
     { label: "Instagram", href: "https://instagram.com/mohit_kumar_singh" },
+    { label: "Art IG", href: "https://instagram.com/kalakari_by_mks" },
   ],
 };
 
 // The Art section.
 export const art = {
+  instagram: { handle: "@kalakari_by_mks", href: "https://instagram.com/kalakari_by_mks" },
   intro:
     "Long before pipelines, I painted. Walls, paper, a whole café — art is where I learned patience, craft and finishing what I start.",
   highlights: [
     { title: "Freelance wall murals", detail: "Large hand-painted murals for homes and businesses, from sketch to final coat." },
     { title: "Ran a café", detail: "Owned and ran a café end to end — and painted its walls myself." },
     { title: "Team Footprints", detail: "Artist and head of operations of AKGEC's fine-art society for 3+ years." },
-    { title: "Paper carving", detail: "Detailed cut-paper pieces — my quietest, most patient work." },
+    { title: "Paper carving", detail: "Cut by hand with a surgical blade — single pieces take 5 to 14 hours." },
   ],
 };
 
 // Drop artwork photos into public/art/ and list them here — the gallery in the Art section appears automatically.
-export const artworks: { src: string; title: string; detail?: string }[] = [];
+// Pieces from @kalakari_by_mks.
+export const artworks: { src: string; title: string; detail?: string }[] = [
+  { src: "/art/under-the-wolfs-skin.jpg", title: "Under the Wolf's Skin", detail: "Paper cut · surgical blade · ~6 hrs" },
+  { src: "/art/point-of-view-neon.jpg", title: "Point of View", detail: "Neon tubes & acrylic · ~9 hrs" },
+  { src: "/art/voyages-unknown.jpg", title: "Voyages Unknown", detail: "Paper cut · ~5 hrs" },
+  { src: "/art/waqt.jpg", title: "Waqt", detail: "Paper cut portrait · ~10 hrs" },
+  { src: "/art/the-eyes.jpg", title: "The Eyes", detail: "Paper cut · ~5 hrs" },
+  { src: "/art/on-the-wings.jpg", title: "On the Wings", detail: "Paper cut · ~10 hrs" },
+  { src: "/art/perfection-is-a-flaw.jpg", title: "Perfection Is a Flaw", detail: "Paper cut · ~14 hrs" },
+  { src: "/art/and-still.jpg", title: "And Still", detail: "Paper cut" },
+  { src: "/art/laal-bindi.jpg", title: "Laal Bindi", detail: "Graphite on paper" },
+  { src: "/art/a-tale-of-eyes.jpg", title: "A Tale of Eyes, Soul and Heart", detail: "Paper cut" },
+  { src: "/art/turn-on-the-light.jpg", title: "Turn On the Light", detail: "Light art" },
+  { src: "/art/happy-halloween.jpg", title: "Happy Halloween", detail: "Paper cut · ~8 hrs" },
+];
 
 export const skills: { group: string; items: string[] }[] = [
   { group: "DevOps & Automation", items: ["CI/CD", "Docker", "GitHub Actions", "Linux", "Scripting", "Process automation"] },
