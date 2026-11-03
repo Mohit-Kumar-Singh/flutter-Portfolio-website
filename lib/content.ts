@@ -142,12 +142,4 @@ export const projects: Project[] = [
     year: "",
     stack: ["Business", "Operations", "Interior art"],
   },
-  {
-    title: "Employee System",
-    category: "Java · Spring Boot",
-    description: "Employee management backend with a REST API.",
-    year: "2023",
-    stack: ["Java", "Spring Boot", "REST"],
-    code: "https://github.com/Mohit-Kumar-Singh/ems-spring-assignment-3",
-  },
 ];

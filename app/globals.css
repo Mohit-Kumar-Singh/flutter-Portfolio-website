@@ -103,3 +103,25 @@ html.has-cursor * {
 @media (prefers-reduced-motion: reduce) {
   .grain { animation: none; }
 }
+
+/* Art gallery: a slow, endless drift. Moving the track by half its width lands exactly on the second copy. */
+.art-marquee-track {
+  animation: art-drift 70s linear infinite;
+}
+.art-marquee:hover .art-marquee-track,
+.art-marquee:active .art-marquee-track,
+.art-marquee:focus-within .art-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes art-drift {
+  to { transform: translateX(calc(-50% - 0.5rem)); }
+}
+@media (min-width: 768px) {
+  @keyframes art-drift {
+    to { transform: translateX(calc(-50% - 0.75rem)); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .art-marquee { overflow-x: auto; }
+  .art-marquee-track { animation: none; }
+}

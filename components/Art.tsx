@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { art, artworks } from "@/lib/content";
-import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
+import { EASE_OUT } from "@/lib/motion";
 import { Magnetic, RevealText } from "./ui";
 
 // The artist side: murals, the café, the fine-art society — plus a gallery once photos are added.
@@ -57,32 +57,46 @@ export function Art() {
       </div>
 
       {artworks.length > 0 && (
-        <ul className="mt-20 grid grid-cols-2 gap-x-4 gap-y-8 md:mt-28 md:grid-cols-3 md:gap-x-6 md:gap-y-12">
-          {artworks.map((a, i) => (
-            <li key={a.src}>
-              <a href={art.instagram.href} target="_blank" rel="noreferrer" data-cursor="View" className="group block">
-                <motion.div
-                  className="relative aspect-[4/5] overflow-hidden rounded-sm"
-                  initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                  whileInView={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                  viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-                  transition={{ duration: 1.1, ease: EASE_IN_OUT, delay: (i % 3) * 0.08 }}
-                >
-                  <Image
-                    src={a.src}
-                    alt={`${a.title} — artwork by Mohit Kumar Singh`}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
-                  />
-                </motion.div>
-                {/* Captions sit below the image so touch screens see them too. */}
-                <span className="mt-3 block text-sm leading-tight">{a.title}</span>
-                {a.detail && <span className="mt-1 block text-xs text-muted">{a.detail}</span>}
-              </a>
-            </li>
-          ))}
-        </ul>
+        // One drifting row instead of a tall grid. The list is rendered twice so the loop is seamless;
+        // hovering or holding pauses it, and with reduced motion it becomes a normal swipeable row.
+        <motion.div
+          className="art-marquee -mx-5 mt-16 overflow-hidden md:-mx-10 md:mt-24"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          transition={{ duration: 1, ease: EASE_OUT }}
+        >
+          <div className="art-marquee-track flex w-max gap-4 md:gap-6">
+            {[0, 1].map((copy) => (
+              <ul key={copy} className="flex shrink-0 gap-4 md:gap-6" aria-hidden={copy === 1 || undefined}>
+                {artworks.map((a) => (
+                  <li key={a.src} className="w-44 shrink-0 md:w-64">
+                    <a
+                      href={art.instagram.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={copy === 1 ? -1 : undefined}
+                      data-cursor="View"
+                      className="group block"
+                    >
+                      <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+                        <Image
+                          src={a.src}
+                          alt={copy === 1 ? "" : `${a.title} — artwork by Mohit Kumar Singh`}
+                          fill
+                          sizes="(min-width: 768px) 16rem, 11rem"
+                          className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+                        />
+                      </div>
+                      <span className="mt-3 block truncate text-sm leading-tight">{a.title}</span>
+                      {a.detail && <span className="mt-1 block truncate text-xs text-muted">{a.detail}</span>}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </motion.div>
       )}
     </section>
   );
