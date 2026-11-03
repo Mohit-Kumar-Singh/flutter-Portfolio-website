@@ -26,7 +26,7 @@ export default async function AppleIcon() {
         }}
       >
         <div style={{ display: "flex" }}>m</div>
-        <div style={{ display: "flex", width: 22, height: 22, borderRadius: 22, background: "#ff4a1c", marginTop: 72, marginLeft: 4 }} />
+        <div style={{ display: "flex", width: 22, height: 22, borderRadius: 22, background: "#c1653f", marginTop: 72, marginLeft: 4 }} />
       </div>
     ),
     { ...size, fonts: [{ name: "Instrument Serif", data: serif, style: "italic", weight: 400 }] },

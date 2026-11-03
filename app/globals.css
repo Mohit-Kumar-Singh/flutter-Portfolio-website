@@ -4,7 +4,7 @@
   --paper: #efede8;
   --ink: #111111;
   --muted: #8a877f;
-  --accent: #ff4a1c;
+  --accent: #c1653f;
   --line: rgba(17, 17, 17, 0.14);
   color-scheme: light;
 }
@@ -15,6 +15,7 @@
   --ink: #ecebe6;
   --muted: #8f8c85;
   --line: rgba(236, 235, 230, 0.14);
+  --accent: #d9805b;
   color-scheme: dark;
 }
 
@@ -74,35 +75,6 @@ html.lenis body {
   overflow: clip;
 }
 
-/* Hide the native cursor only when the custom one is active */
-html.has-cursor,
-html.has-cursor * {
-  cursor: none !important;
-}
-
-/* Film grain */
-.grain {
-  pointer-events: none;
-  position: fixed;
-  inset: -100%;
-  z-index: 60;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain 1s steps(6) infinite;
-}
-
-@keyframes grain {
-  0% { transform: translate(0, 0); }
-  20% { transform: translate(-5%, 3%); }
-  40% { transform: translate(4%, -6%); }
-  60% { transform: translate(-3%, 7%); }
-  80% { transform: translate(6%, -2%); }
-  100% { transform: translate(0, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .grain { animation: none; }
-}
 
 /* Art gallery: a slow, endless drift. Moving the track by half its width lands exactly on the second copy. */
 .art-marquee-track {

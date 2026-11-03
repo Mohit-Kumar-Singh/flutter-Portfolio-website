@@ -9,13 +9,13 @@ import { useLoaded } from "./Experience";
 import { MobileMenu, type NavLink } from "./MobileMenu";
 import { SoundToggle } from "./SoundToggle";
 import { ThemeToggle } from "./ThemeToggle";
-import { Magnetic, RollLink } from "./ui";
+import { RollLink } from "./ui";
 
 const LINKS: NavLink[] = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Art", href: "#art" },
-  { label: "Journey", href: "#journey" },
+  { label: "Experience", href: "#journey" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -32,36 +32,22 @@ export function Nav() {
         animate={loaded ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 1, ease: EASE_OUT, delay: 0.9 }}
       >
-        <Magnetic strength={0.25}>
-          <a href="#top" className="group -my-3 flex items-center gap-1 py-3 text-sm font-medium">
-            <span className="inline-block transition-transform duration-700 ease-out-expo group-hover:rotate-[360deg]">©</span>
-            <span className="relative overflow-hidden">
-              <span className="block transition-transform duration-500 ease-out-expo group-hover:-translate-x-full">
-                Code by {site.firstName}
-              </span>
-              <span className="absolute inset-0 translate-x-full transition-transform duration-500 ease-out-expo group-hover:translate-x-0">
-                {site.firstName} {site.lastName}
-              </span>
-            </span>
-          </a>
-        </Magnetic>
+        <a href="#top" className="-my-3 py-3 text-sm font-medium">
+          {site.firstName} {site.lastName}
+        </a>
         <nav aria-label="Primary" className="flex items-center gap-5 text-sm md:gap-10">
           <div className="hidden items-center gap-8 sm:flex md:gap-10">
             {LINKS.map((l) => (
-              <Magnetic key={l.href} strength={0.3}>
-                <RollLink href={l.href}>{l.label}</RollLink>
-              </Magnetic>
+              <RollLink key={l.href} href={l.href}>
+                {l.label}
+              </RollLink>
             ))}
           </div>
           {/* On phones the sound switch lives in the menu to keep the bar light. */}
           <span className="hidden sm:contents">
-            <Magnetic strength={0.4}>
-              <SoundToggle />
-            </Magnetic>
+            <SoundToggle />
           </span>
-          <Magnetic strength={0.4}>
-            <ThemeToggle />
-          </Magnetic>
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => {

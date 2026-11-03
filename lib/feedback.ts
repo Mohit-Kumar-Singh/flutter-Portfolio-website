@@ -78,7 +78,10 @@ function play(cue: Cue) {
 
 export function feedback(cue: Cue) {
   if (typeof window === "undefined") return;
-  if (window.matchMedia("(pointer: coarse)").matches) navigator.vibrate?.(HAPTICS[cue]);
+  // Browsers block vibration until the visitor has tapped the page at least once.
+  if (window.matchMedia("(pointer: coarse)").matches && navigator.userActivation?.hasBeenActive) {
+    navigator.vibrate?.(HAPTICS[cue]);
+  }
   if (isSoundOn()) {
     try {
       play(cue);

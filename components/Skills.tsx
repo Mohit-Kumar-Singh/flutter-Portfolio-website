@@ -10,12 +10,8 @@ export function Skills() {
     <section id="skills" className="px-5 py-20 md:px-10 md:py-40">
       <div className="mb-14 flex items-end justify-between md:mb-20">
         <h2 className="text-5xl tracking-tight md:text-8xl">
-          <RevealText text="The" />{" "}
-          <span className="font-serif italic">
-            <RevealText text="toolkit" delay={0.1} />
-          </span>
+          <RevealText text="Skills" />
         </h2>
-        <span className="text-sm text-muted">(Skills)</span>
       </div>
 
       <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
@@ -30,7 +26,6 @@ export function Skills() {
             />
             <h3 className="mb-5 flex justify-between text-sm text-muted">
               <span>{g.group}</span>
-              <span>{String(gi + 1).padStart(2, "0")}</span>
             </h3>
             <p className="text-lg leading-snug sm:hidden">{g.items.join(" · ")}</p>
             <motion.ul

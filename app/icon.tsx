@@ -27,7 +27,7 @@ export default async function Icon() {
         }}
       >
         m
-        <div style={{ width: 8, height: 8, borderRadius: 8, background: "#ff4a1c", marginTop: 26, marginLeft: 2 }} />
+        <div style={{ width: 8, height: 8, borderRadius: 8, background: "#c1653f", marginTop: 26, marginLeft: 2 }} />
       </div>
     ),
     { ...size, fonts: [{ name: "Instrument Serif", data: serif, style: "italic", weight: 400 }] },

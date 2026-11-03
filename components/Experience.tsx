@@ -1,10 +1,8 @@
 "use client";
 
 import Lenis from "lenis";
-import { AnimatePresence, MotionConfig } from "motion/react";
+import { MotionConfig } from "motion/react";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { Cursor } from "./Cursor";
-import { Preloader } from "./Preloader";
 
 const LoadedContext = createContext(false);
 export const useLoaded = () => useContext(LoadedContext);
@@ -14,12 +12,10 @@ type ScrollControls = { setLocked: (locked: boolean) => void; scrollTo: (selecto
 const ScrollContext = createContext<ScrollControls>({ setLocked: () => {}, scrollTo: () => {} });
 export const useScrollControls = () => useContext(ScrollContext);
 
-// Wraps the page: smooth scroll, preloader, cursor and grain.
+// Wraps the page: smooth scroll, and a "loaded" flag the hero uses to start its entrance.
 export function Experience({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   const lenis = useRef<Lenis | null>(null);
-  // Stable so the preloader's effect doesn't restart its animation on re-render.
-  const handleDone = useCallback(() => setLoaded(true), []);
 
   const setScrollLocked = useCallback((locked: boolean) => {
     if (lenis.current) {
@@ -46,26 +42,21 @@ export function Experience({ children }: { children: React.ReactNode }) {
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       lenis.current = new Lenis({ lerp: 0.085, autoRaf: true, anchors: true });
     }
-    setScrollLocked(true);
+    // Start the hero entrance on the next frame, once the page has painted.
+    const id = requestAnimationFrame(() => setLoaded(true));
     return () => {
+      cancelAnimationFrame(id);
       lenis.current?.destroy();
       lenis.current = null;
       document.documentElement.style.overflow = "";
     };
   }, [setScrollLocked]);
 
-  useEffect(() => {
-    if (loaded) setScrollLocked(false);
-  }, [loaded, setScrollLocked]);
-
   return (
     <MotionConfig reducedMotion="user">
       <LoadedContext.Provider value={loaded}>
         <ScrollContext.Provider value={controls}>
-          <AnimatePresence>{!loaded && <Preloader key="preloader" onDone={handleDone} />}</AnimatePresence>
           {children}
-          <Cursor />
-          <div className="grain" aria-hidden />
         </ScrollContext.Provider>
       </LoadedContext.Provider>
     </MotionConfig>

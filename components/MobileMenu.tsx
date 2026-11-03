@@ -61,7 +61,6 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
             Close
           </button>
 
-          <span className="mb-6 text-xs text-paper/40">Navigation</span>
           <nav className="flex flex-col">
             {links.map((l, i) => (
               <motion.a
@@ -75,8 +74,7 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
                 exit={{ opacity: 0, y: 20, transition: { duration: 0.2 } }}
                 transition={{ ...SPRING_GENTLE, delay: 0.2 + i * 0.05 }}
               >
-                <span className="text-xs text-paper/40">{String(i + 1).padStart(2, "0")}</span>
-                <span className={i % 2 ? "font-serif italic" : ""}>{l.label}</span>
+                {l.label}
               </motion.a>
             ))}
           </nav>

@@ -57,7 +57,6 @@ function Portrait() {
   return (
     <motion.div
       ref={ref}
-      data-cursor="Hi!"
       className="group relative aspect-[87/105] w-full max-w-xs overflow-hidden rounded-sm"
       initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
       whileInView={{ clipPath: "inset(0% 0% 0% 0%)" }}
@@ -86,7 +85,7 @@ export function About() {
     <section id="about" className="px-5 py-20 md:px-10 md:py-48">
       <div className="grid gap-10 md:grid-cols-[1fr_3fr] md:gap-16">
         <div className="flex flex-col gap-6">
-          <span className="text-sm text-muted">(About)</span>
+          <h2 className="text-sm text-muted">About</h2>
           <Portrait />
         </div>
         <div>

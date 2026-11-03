@@ -22,14 +22,14 @@ export const site = {
   resume: "",
   portrait: "/images/portrait.jpg",
   intro:
-    "DevOps at Volkswagen Group — I automate pipelines and help teams smooth out the processes around them. Off-screen I'm an artist: wall murals, paper carving, and once, my own café.",
+    "I work in DevOps at Volkswagen Group, automating build and release pipelines and helping teams improve how they work. I'm also an artist. I paint murals, cut paper by hand, and I once ran a café.",
   about:
-    "I've always lived between technology and art. I led my college's fine-art society for three years, painted walls as a freelance muralist and ran a café — and today I work in DevOps at Volkswagen Group, automating the work nobody should do by hand.",
+    "I studied Computer Science at AKGEC and spent three years running the college's fine-art society. Since 2023 I've worked at Volkswagen Group on DevOps and automation. Outside work I still make art: murals, paper cuts and drawings.",
   education: [
     { title: "B.Tech, Computer Science", place: "AKGEC, Ghaziabad · 2019–2023" },
-    { title: "Class XII — 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
+    { title: "Class XII, 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
   ],
-  offScreen: "Badminton, a sketchbook, and one more episode of a good series.",
+  offScreen: "Badminton, art, and a good series.",
   // "At a glance" numbers in the About section.
   stats: [
     { value: 3, suffix: "+", label: "Years at Volkswagen Group" },
@@ -48,12 +48,12 @@ export const site = {
 export const art = {
   instagram: { handle: "@kalakari_by_mks", href: "https://instagram.com/kalakari_by_mks" },
   intro:
-    "Long before pipelines, I painted. Walls, paper, a whole café — art is where I learned patience, craft and finishing what I start.",
+    "I've made art for as long as I've written code. Most of it is paper cutting, done by hand with a surgical blade.",
   highlights: [
-    { title: "Freelance wall murals", detail: "Large hand-painted murals for homes and businesses, from sketch to final coat." },
-    { title: "Ran a café", detail: "Owned and ran a café end to end — and painted its walls myself." },
-    { title: "Team Footprints", detail: "Artist and head of operations of AKGEC's fine-art society for 3+ years." },
-    { title: "Paper carving", detail: "Cut by hand with a surgical blade — single pieces take 5 to 14 hours." },
+    { title: "Freelance wall murals", detail: "Murals painted for clients as a freelancer." },
+    { title: "Ran a café", detail: "Owned and ran my own café." },
+    { title: "Team Footprints", detail: "Artist and head of operations at AKGEC's fine-art society for over three years." },
+    { title: "Paper carving", detail: "Cut by hand with a surgical blade. One piece takes 5 to 14 hours." },
   ],
 };
 
@@ -87,7 +87,7 @@ export const timeline: { year: string; items: { title: string; detail: string }[
     items: [
       {
         title: "DevOps · Volkswagen Group",
-        detail: "Joined Volkswagen Group Technology Solutions India in Gurugram (Aug 2023 – present) — automating pipelines and helping teams improve their processes.",
+        detail: "Software developer at Volkswagen Group Technology Solutions India, Gurugram, since August 2023. I work on DevOps: automating pipelines and helping teams with their processes.",
       },
       { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: an app that detects malicious URLs." },
     ],
@@ -97,7 +97,7 @@ export const timeline: { year: string; items: { title: string; detail: string }[
     items: [
       {
         title: "Team Head · Team Footprints",
-        detail: "Artist and head of operations of AKGEC's fine-art society for 3+ years — ran blood donation camps, anti-ragging drives and Azadi Ka Amrit Mahotsav events.",
+        detail: "Artist and head of operations at AKGEC's fine-art society. We ran blood donation camps, anti-ragging drives and Azadi Ka Amrit Mahotsav events.",
       },
     ],
   },
@@ -107,7 +107,7 @@ export const timeline: { year: string; items: { title: string; detail: string }[
   },
   {
     year: "2018",
-    items: [{ title: "Class XII — 93.2% (PCM)", detail: "Bloomingdale School, Badaun. Head of co-cultural activities." }],
+    items: [{ title: "Class XII, 93.2% (PCM)", detail: "Bloomingdale School, Badaun. Head of co-cultural activities." }],
   },
 ];
 
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     title: "Wall Murals",
     category: "Freelance artist",
     icon: "brush",
-    description: "Hand-painted murals for homes, cafés and businesses — from first sketch to the final wall.",
+    description: "Wall murals painted for clients, from sketch to finished wall.",
     year: "",
     stack: ["Murals", "Painting", "Client work"],
   },
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     title: "The Café",
     category: "Owner · Operations",
     icon: "cup",
-    description: "Ran my own café — menu, people, suppliers and the space itself, which I painted.",
+    description: "I ran my own café: the menu, the people and the suppliers.",
     year: "",
     stack: ["Business", "Operations", "Interior art"],
   },

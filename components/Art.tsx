@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { art, artworks } from "@/lib/content";
 import { EASE_OUT, FADE_UP, SPRING_GENTLE } from "@/lib/motion";
-import { Icon } from "./Icons";
 import { Magnetic, RevealText } from "./ui";
 
 // The artist side: murals, the café, the fine-art society — plus a gallery once photos are added.
@@ -13,13 +12,8 @@ export function Art() {
     <section id="art" className="px-5 py-20 md:px-10 md:py-40">
       <div className="mb-14 flex items-end justify-between md:mb-20">
         <h2 className="text-5xl tracking-tight md:text-8xl">
-          <RevealText text="The other" />{" "}
-          <span className="font-serif italic">
-            <RevealText text="canvas" delay={0.1} />
-          </span>{" "}
-          <Icon name="brush" draw strokeWidth={1} className="icon-wiggle align-top text-5xl md:text-7xl" />
+          <RevealText text="Art" />
         </h2>
-        <span className="text-sm text-muted">(Art)</span>
       </div>
 
       <div className="grid gap-12 md:grid-cols-[1fr_3fr] md:gap-16">
@@ -48,7 +42,6 @@ export function Art() {
               {...FADE_UP}
               transition={{ ...SPRING_GENTLE, delay: (i % 2) * 0.08 }}
             >
-              <span className="mb-4 block text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mb-2 text-2xl tracking-tight md:text-3xl">{h.title}</h3>
               <p className="max-w-sm leading-snug text-muted">{h.detail}</p>
             </motion.li>
@@ -76,13 +69,13 @@ export function Art() {
                       target="_blank"
                       rel="noreferrer"
                       tabIndex={copy === 1 ? -1 : undefined}
-                      data-cursor="View"
+
                       className="group block"
                     >
                       <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
                         <Image
                           src={a.src}
-                          alt={copy === 1 ? "" : `${a.title} — artwork by Mohit Kumar Singh`}
+                          alt={copy === 1 ? "" : `${a.title}, artwork by Mohit Kumar Singh`}
                           fill
                           sizes="(min-width: 768px) 16rem, 11rem"
                           className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"

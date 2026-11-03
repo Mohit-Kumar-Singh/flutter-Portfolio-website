@@ -124,22 +124,6 @@ export function Hero() {
                 </div>
               </motion.div>
             </div>
-            <motion.a
-              href="#work"
-              className="hidden items-center gap-3 text-sm text-muted md:flex"
-              initial={{ opacity: 0 }}
-              animate={loaded ? { opacity: 1 } : {}}
-              transition={{ duration: 1, delay: 1.4 }}
-            >
-              Scroll
-              <span className="relative h-10 w-px overflow-hidden bg-line">
-                <motion.span
-                  className="absolute inset-x-0 top-0 h-1/2 bg-ink"
-                  animate={{ y: ["-100%", "200%"] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </span>
-            </motion.a>
           </div>
         </div>
       </div>

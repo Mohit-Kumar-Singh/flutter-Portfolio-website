@@ -27,14 +27,8 @@ export function Contact() {
     <section id="contact" className="relative bg-ink text-paper">
       <div className="flex min-h-svh flex-col justify-between px-5 pb-8 pt-32 md:px-10 md:pb-10 md:pt-40">
         <div>
-          <span className="mb-10 block text-sm text-paper/50">(Contact)</span>
           <h2 className="text-[13vw] leading-[0.9] tracking-[-0.04em] md:text-[9vw]">
-            <RevealText text="Let's make" />
-            <br />
-            <span className="font-serif italic">
-              <RevealText text="something" delay={0.1} />
-            </span>{" "}
-            <RevealText text="rare." delay={0.2} />
+            <RevealText text="Say hello." />
           </h2>
         </div>
 
@@ -45,7 +39,6 @@ export function Contact() {
             <button
               type="button"
               onClick={copyEmail}
-              data-cursor={copied ? "Copied" : "Copy"}
               aria-label={`Copy email address ${site.email}`}
               className="press group relative block overflow-hidden rounded-full border border-paper/20 bg-ink px-8 py-5 text-left text-lg md:text-2xl"
             >

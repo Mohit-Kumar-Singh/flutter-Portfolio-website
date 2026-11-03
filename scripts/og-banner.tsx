@@ -28,7 +28,7 @@ export default async function Image() {
       <div style={{ display: "flex", width: "100%", height: "100%", background: "#111111", color: "#efede8" }}>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1, padding: 64 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 24, color: "#a8a59d" }}>
-            <div style={{ width: 12, height: 12, borderRadius: 12, background: "#ff4a1c" }} />
+            <div style={{ width: 12, height: 12, borderRadius: 12, background: "#d9805b" }} />
             <div style={{ display: "flex" }}>{`${site.status} · ${site.location}`}</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -49,7 +49,7 @@ export default async function Image() {
                   padding: "8px 20px",
                   borderRadius: 999,
                   border: "1px solid rgba(239,237,232,0.25)",
-                  color: tag === "Artist" ? "#ff4a1c" : "#efede8",
+                  color: tag === "Artist" ? "#d9805b" : "#efede8",
                 }}
               >
                 {tag}

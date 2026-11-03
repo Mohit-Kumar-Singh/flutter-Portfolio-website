@@ -84,7 +84,7 @@ export function Magnetic({
   );
 }
 
-// Text that rolls up to a duplicate of itself on hover.
+// A plain text link with an underline that draws in on hover.
 export function RollLink({
   href,
   children,
@@ -103,16 +103,8 @@ export function RollLink({
       className={`group -my-3 inline-flex py-3 ${className ?? ""}`}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
     >
-      <span className="relative inline-flex overflow-hidden">
-        <span className="block transition-transform duration-500 ease-out-expo group-hover:-translate-y-full">
-          {children}
-        </span>
-        <span
-          aria-hidden
-          className="absolute inset-0 translate-y-full font-serif italic transition-transform duration-500 ease-out-expo group-hover:translate-y-0"
-        >
-          {children}
-        </span>
+      <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px]">
+        {children}
       </span>
     </a>
   );

@@ -16,12 +16,8 @@ export function Journey() {
     <section id="journey" className="px-5 py-20 md:px-10 md:py-40">
       <div className="mb-14 flex items-end justify-between md:mb-20">
         <h2 className="text-5xl tracking-tight md:text-8xl">
-          <RevealText text="The" />{" "}
-          <span className="font-serif italic">
-            <RevealText text="journey" delay={0.1} />
-          </span>
+          <RevealText text="Experience" />
         </h2>
-        <span className="text-sm text-muted">(Timeline)</span>
       </div>
 
       {/* The rule lives beside the list, not inside it — an <ol> may only contain <li>s. */}

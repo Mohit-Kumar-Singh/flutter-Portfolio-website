@@ -17,12 +17,8 @@ export function Work() {
     <section id="work" className="px-5 py-20 md:px-10 md:py-48">
       <div className="mb-16 flex items-end justify-between md:mb-24">
         <h2 className="text-5xl tracking-tight md:text-8xl">
-          <RevealText text="Selected" />{" "}
-          <span className="font-serif italic">
-            <RevealText text="work" delay={0.1} />
-          </span>
+          <RevealText text="Work" />
         </h2>
-        <span className="text-sm text-muted">({String(projects.length).padStart(2, "0")})</span>
       </div>
 
       <ul onPointerLeave={() => setActive(null)}>
@@ -46,15 +42,13 @@ export function Work() {
                 transition={{ duration: 1.4, ease: EASE_OUT, delay: i * 0.08 }}
               />
               <div
-                data-cursor={href ? "View" : undefined}
                 onPointerEnter={(e) => {
                   // Hover-only effect: a tap on a touch screen would otherwise leave the other rows dimmed.
                   if (e.pointerType === "mouse") setActive(i);
                 }}
-                className="group relative grid grid-cols-[2.5rem_1fr] items-start gap-y-3 py-8 transition-opacity duration-500 lg:grid-cols-[4rem_1fr_20rem_6rem] lg:items-center lg:py-11"
+                className="group relative grid grid-cols-1 items-start gap-y-3 py-8 transition-opacity duration-500 lg:grid-cols-[1fr_20rem_6rem] lg:items-center lg:py-11"
                 style={{ opacity: active === null || active === i ? 1 : 0.3 }}
               >
-                <span className="pt-2 text-sm text-muted lg:pt-0">{String(i + 1).padStart(2, "0")}</span>
                 {href ? (
                   <a
                     href={href}
@@ -67,7 +61,7 @@ export function Work() {
                 ) : (
                   <h3 className="text-4xl font-normal tracking-tight lg:text-7xl">{title}</h3>
                 )}
-                <div className="col-start-2 text-sm lg:col-start-auto">
+                <div className="text-sm">
                   <Icon name={p.icon} draw className="icon-wiggle mr-2 -mt-0.5 align-middle text-base" />
                   {p.category}
                   <p className="mt-1 max-w-xs text-muted">{p.description}</p>
