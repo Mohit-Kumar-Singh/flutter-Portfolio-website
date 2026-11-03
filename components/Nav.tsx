@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { site } from "@/lib/content";
 import { EASE_OUT } from "@/lib/motion";
 import { useLoaded } from "./Experience";
+import { ThemeToggle } from "./ThemeToggle";
 import { Magnetic, RollLink } from "./ui";
 
 const LINKS = [
@@ -34,12 +35,15 @@ export function Nav() {
           </span>
         </a>
       </Magnetic>
-      <nav className="flex gap-6 text-sm md:gap-10">
+      <nav className="flex items-center gap-5 text-sm md:gap-10">
         {LINKS.map((l) => (
           <Magnetic key={l.href} strength={0.3}>
             <RollLink href={l.href}>{l.label}</RollLink>
           </Magnetic>
         ))}
+        <Magnetic strength={0.4}>
+          <ThemeToggle />
+        </Magnetic>
       </nav>
     </motion.header>
   );

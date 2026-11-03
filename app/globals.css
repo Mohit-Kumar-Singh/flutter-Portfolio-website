@@ -6,6 +6,23 @@
   --muted: #8a877f;
   --accent: #ff4a1c;
   --line: rgba(17, 17, 17, 0.14);
+  color-scheme: light;
+}
+
+/* Dark theme swaps paper and ink; set on <html> by the theme script / toggle. */
+:root[data-theme="dark"] {
+  --paper: #0e0e0d;
+  --ink: #ecebe6;
+  --muted: #8f8c85;
+  --line: rgba(236, 235, 230, 0.14);
+  color-scheme: dark;
+}
+
+/* Theme switch: the new theme is revealed by a circle animated from JS. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @theme inline {

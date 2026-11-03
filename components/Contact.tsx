@@ -40,7 +40,7 @@ export function Contact() {
           <Magnetic strength={0.5} className="relative">
             <a
               href={`mailto:${site.email}`}
-              className="flex size-40 items-center justify-center rounded-full bg-accent text-lg text-ink transition-transform duration-500 ease-out-expo hover:scale-105 md:size-52"
+              className="flex size-40 items-center justify-center rounded-full bg-accent text-lg text-[#111] transition-transform duration-500 ease-out-expo hover:scale-105 md:size-52"
             >
               <motion.span style={{ rotate }} className="inline-flex items-center gap-2">
                 Get in touch ↗

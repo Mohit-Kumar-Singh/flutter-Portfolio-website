@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Instrument_Serif } from "next/font/google";
+import { themeScript } from "@/lib/theme";
 import "./globals.css";
 
 // next/font self-hosts these at build time — no requests to Google at runtime.
@@ -26,7 +27,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${geistSans.variable} ${instrument.variable} antialiased`}
+      // The theme script sets data-theme before React hydrates.
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         {children}
         <SpeedInsights />
