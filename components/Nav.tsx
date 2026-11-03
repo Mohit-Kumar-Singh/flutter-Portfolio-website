@@ -3,9 +3,11 @@
 import { motion } from "motion/react";
 import { useCallback, useState } from "react";
 import { site } from "@/lib/content";
+import { feedback } from "@/lib/feedback";
 import { EASE_OUT } from "@/lib/motion";
 import { useLoaded } from "./Experience";
 import { MobileMenu, type NavLink } from "./MobileMenu";
+import { SoundToggle } from "./SoundToggle";
 import { ThemeToggle } from "./ThemeToggle";
 import { Magnetic, RollLink } from "./ui";
 
@@ -52,11 +54,17 @@ export function Nav() {
             ))}
           </div>
           <Magnetic strength={0.4}>
+            <SoundToggle />
+          </Magnetic>
+          <Magnetic strength={0.4}>
             <ThemeToggle />
           </Magnetic>
           <button
             type="button"
-            onClick={() => setMenuOpen(true)}
+            onClick={() => {
+              feedback("open");
+              setMenuOpen(true);
+            }}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             className="-m-3 flex items-center gap-2 p-3 sm:hidden"

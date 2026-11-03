@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { site } from "@/lib/content";
+import { feedback } from "@/lib/feedback";
 import { EASE_OUT } from "@/lib/motion";
 import { useLoaded } from "./Experience";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
@@ -46,7 +47,17 @@ export function Hero() {
               <span className="size-2 rounded-full bg-accent" />
               {site.status}
             </span>
-            {site.focus.replace(" & ", " · ")} · Artist
+            <span className="flex flex-wrap gap-x-3">
+              <span>
+                <span className="emoji emoji-spin" aria-hidden>⚙️</span> DevOps
+              </span>
+              <span>
+                <span className="emoji emoji-wiggle" aria-hidden>🤖</span> Automation
+              </span>
+              <span>
+                <span className="emoji emoji-wiggle" aria-hidden>🎨</span> Artist
+              </span>
+            </span>
           </motion.div>
           <motion.div
             className="text-right text-muted"
@@ -84,6 +95,7 @@ export function Hero() {
                 <Magnetic strength={0.3}>
                   <a
                     href="#contact"
+                    onClick={() => feedback("tap")}
                     className="group relative block overflow-hidden rounded-full bg-ink px-6 py-3 text-sm text-paper"
                   >
                     <span className="absolute inset-0 translate-y-full rounded-full bg-accent transition-transform duration-500 ease-out-expo group-hover:translate-y-0" />

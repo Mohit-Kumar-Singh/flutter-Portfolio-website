@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { site } from "@/lib/content";
 import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
+import { feedback } from "@/lib/feedback";
 import { useScrollControls } from "./Experience";
 
 export type NavLink = { label: string; href: string };
@@ -27,6 +28,7 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
 
   const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    feedback("tap");
     onClose();
     // Wait a frame so scrolling is unlocked before we move.
     requestAnimationFrame(() => scrollTo(href));
@@ -48,7 +50,10 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
         >
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => {
+              feedback("close");
+              onClose();
+            }}
             className="absolute right-5 top-5 -m-3 p-3 text-sm"
             aria-label="Close menu"
           >

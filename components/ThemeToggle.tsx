@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { useSyncExternalStore } from "react";
 import { EASE_IN_OUT } from "@/lib/motion";
+import { feedback } from "@/lib/feedback";
 
 type Theme = "light" | "dark";
 
@@ -25,6 +26,7 @@ export function ThemeToggle() {
   const dark = theme === "dark";
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    feedback("toggle");
     const next: Theme = dark ? "light" : "dark";
     const apply = () => {
       document.documentElement.dataset.theme = next;

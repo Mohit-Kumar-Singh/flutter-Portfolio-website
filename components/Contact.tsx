@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { site } from "@/lib/content";
+import { feedback } from "@/lib/feedback";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 export function Contact() {
@@ -15,6 +16,7 @@ export function Contact() {
       window.location.href = `mailto:${site.email}`;
       return;
     }
+    feedback("success");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -69,6 +71,7 @@ export function Contact() {
           <Magnetic strength={0.5} className="relative">
             <a
               href={`mailto:${site.email}`}
+              onClick={() => feedback("tap")}
               className="flex size-40 items-center justify-center rounded-full bg-accent text-lg text-[#111] transition-transform duration-500 ease-out-expo hover:scale-105 md:size-52"
             >
               <span className="inline-flex items-center gap-2">
@@ -87,6 +90,17 @@ export function Contact() {
             <div>
               <span className="mb-2 block text-xs text-paper/40">Local time</span>
               <LocalTime timeZone={site.timeZone} />
+            </div>
+            <div className="hidden sm:block">
+              <span className="mb-2 block text-xs text-paper/40">Built with</span>
+              <span className="emoji emoji-wiggle" aria-hidden>
+                ☕
+              </span>{" "}
+              &amp;{" "}
+              <span className="emoji emoji-spin" aria-hidden>
+                ⚙️
+              </span>{" "}
+              in Delhi
             </div>
           </div>
           <div>

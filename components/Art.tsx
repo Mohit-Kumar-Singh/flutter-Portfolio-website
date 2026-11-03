@@ -15,6 +15,9 @@ export function Art() {
           <RevealText text="The other" />{" "}
           <span className="font-serif italic">
             <RevealText text="canvas" delay={0.1} />
+          </span>{" "}
+          <span className="emoji emoji-sway align-top text-4xl md:text-6xl" aria-hidden>
+            🖌️
           </span>
         </h2>
         <span className="text-sm text-muted">(Art)</span>

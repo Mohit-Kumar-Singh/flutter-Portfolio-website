@@ -37,7 +37,7 @@ export const site = {
     { label: "GitHub", href: "https://github.com/Mohit-Kumar-Singh" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mohit-kumar-singh-mks" },
     { label: "Instagram", href: "https://instagram.com/mohit_kumar_singh" },
-    { label: "Art IG", href: "https://instagram.com/kalakari_by_mks" },
+    { label: "Kalakari", href: "https://instagram.com/kalakari_by_mks" },
   ],
 };
 
@@ -111,6 +111,8 @@ export const timeline: { year: string; items: { title: string; detail: string }[
 export type Project = {
   title: string;
   category: string;
+  // One small emoji shown beside the category.
+  emoji: string;
   description: string;
   year: string;
   stack: string[];
@@ -123,6 +125,7 @@ export const projects: Project[] = [
   {
     title: "Volkswagen Group",
     category: "DevOps & Automation · Full-time",
+    emoji: "⚙️",
     description:
       "I automate build and release pipelines and the repetitive work around them, and help other teams streamline their processes so they ship faster.",
     year: "2023–now",
@@ -131,6 +134,7 @@ export const projects: Project[] = [
   {
     title: "Wall Murals",
     category: "Freelance artist",
+    emoji: "🎨",
     description: "Hand-painted murals for homes, cafés and businesses — from first sketch to the final wall.",
     year: "",
     stack: ["Murals", "Painting", "Client work"],
@@ -138,6 +142,7 @@ export const projects: Project[] = [
   {
     title: "The Café",
     category: "Owner · Operations",
+    emoji: "☕",
     description: "Ran my own café — menu, people, suppliers and the space itself, which I painted.",
     year: "",
     stack: ["Business", "Operations", "Interior art"],

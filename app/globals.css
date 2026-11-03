@@ -125,3 +125,35 @@ html.has-cursor * {
   .art-marquee { overflow-x: auto; }
   .art-marquee-track { animation: none; }
 }
+
+/* Emoji touches — small, and only on hover except the one brush on the Art heading. */
+.emoji {
+  display: inline-block;
+  font-style: normal;
+}
+.emoji-wiggle:hover,
+.group:hover .emoji-wiggle {
+  animation: emoji-wiggle 0.6s ease-in-out;
+}
+.emoji-spin:hover {
+  animation: emoji-spin 1.2s ease-in-out;
+}
+.emoji-sway {
+  transform-origin: 70% 90%;
+  animation: emoji-sway 3.6s ease-in-out infinite;
+}
+@keyframes emoji-wiggle {
+  0%, 100% { rotate: 0deg; }
+  25% { rotate: -14deg; }
+  75% { rotate: 14deg; }
+}
+@keyframes emoji-spin {
+  to { rotate: 360deg; }
+}
+@keyframes emoji-sway {
+  0%, 100% { rotate: -8deg; }
+  50% { rotate: 12deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emoji-wiggle, .emoji-spin, .emoji-sway, .group:hover .emoji-wiggle { animation: none !important; }
+}

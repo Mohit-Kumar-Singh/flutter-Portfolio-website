@@ -50,7 +50,7 @@ export function Work() {
                   // Hover-only effect: a tap on a touch screen would otherwise leave the other rows dimmed.
                   if (e.pointerType === "mouse") setActive(i);
                 }}
-                className="relative grid grid-cols-[2.5rem_1fr] items-start gap-y-3 py-8 transition-opacity duration-500 lg:grid-cols-[4rem_1fr_20rem_6rem] lg:items-center lg:py-11"
+                className="group relative grid grid-cols-[2.5rem_1fr] items-start gap-y-3 py-8 transition-opacity duration-500 lg:grid-cols-[4rem_1fr_20rem_6rem] lg:items-center lg:py-11"
                 style={{ opacity: active === null || active === i ? 1 : 0.3 }}
               >
                 <span className="pt-2 text-sm text-muted lg:pt-0">{String(i + 1).padStart(2, "0")}</span>
@@ -67,6 +67,9 @@ export function Work() {
                   <h3 className="text-4xl font-normal tracking-tight lg:text-7xl">{title}</h3>
                 )}
                 <div className="col-start-2 text-sm lg:col-start-auto">
+                  <span className="emoji emoji-wiggle mr-2" aria-hidden>
+                    {p.emoji}
+                  </span>
                   {p.category}
                   <p className="mt-1 max-w-xs text-muted">{p.description}</p>
                   <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Tags">
