@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/Icons";
+
 // All site copy lives here — edit this file to make the portfolio yours.
 
 export const site = {
@@ -112,8 +114,8 @@ export const timeline: { year: string; items: { title: string; detail: string }[
 export type Project = {
   title: string;
   category: string;
-  // One small emoji shown beside the category.
-  emoji: string;
+  // Small line icon shown beside the category.
+  icon: IconName;
   description: string;
   year: string;
   stack: string[];
@@ -126,7 +128,7 @@ export const projects: Project[] = [
   {
     title: "Volkswagen Group",
     category: "DevOps & Automation · Full-time",
-    emoji: "⚙️",
+    icon: "gear",
     description:
       "I automate build and release pipelines and the repetitive work around them, and help other teams streamline their processes so they ship faster.",
     year: "2023–now",
@@ -135,7 +137,7 @@ export const projects: Project[] = [
   {
     title: "Wall Murals",
     category: "Freelance artist",
-    emoji: "🎨",
+    icon: "brush",
     description: "Hand-painted murals for homes, cafés and businesses — from first sketch to the final wall.",
     year: "",
     stack: ["Murals", "Painting", "Client work"],
@@ -143,7 +145,7 @@ export const projects: Project[] = [
   {
     title: "The Café",
     category: "Owner · Operations",
-    emoji: "☕",
+    icon: "cup",
     description: "Ran my own café — menu, people, suppliers and the space itself, which I painted.",
     year: "",
     stack: ["Business", "Operations", "Interior art"],

@@ -126,36 +126,25 @@ html.has-cursor * {
   .art-marquee-track { animation: none; }
 }
 
-/* Emoji touches — small, and only on hover except the one brush on the Art heading. */
-.emoji {
-  display: inline-block;
-  font-style: normal;
+/* Line-icon touches — they only move on hover, and never with reduced motion. */
+.icon-wiggle:hover,
+.group:hover .icon-wiggle {
+  animation: icon-wiggle 0.6s ease-in-out;
 }
-.emoji-wiggle:hover,
-.group:hover .emoji-wiggle {
-  animation: emoji-wiggle 0.6s ease-in-out;
+.icon-spin:hover,
+.group:hover .icon-spin {
+  animation: icon-spin 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-.emoji-spin:hover {
-  animation: emoji-spin 1.2s ease-in-out;
-}
-.emoji-sway {
-  transform-origin: 70% 90%;
-  animation: emoji-sway 3.6s ease-in-out infinite;
-}
-@keyframes emoji-wiggle {
+@keyframes icon-wiggle {
   0%, 100% { rotate: 0deg; }
-  25% { rotate: -14deg; }
-  75% { rotate: 14deg; }
+  25% { rotate: -12deg; }
+  75% { rotate: 12deg; }
 }
-@keyframes emoji-spin {
-  to { rotate: 360deg; }
-}
-@keyframes emoji-sway {
-  0%, 100% { rotate: -8deg; }
-  50% { rotate: 12deg; }
+@keyframes icon-spin {
+  to { rotate: 180deg; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .emoji-wiggle, .emoji-spin, .emoji-sway, .group:hover .emoji-wiggle { animation: none !important; }
+  .icon-wiggle, .icon-spin, .group:hover .icon-wiggle, .group:hover .icon-spin { animation: none !important; }
 }
 
 /* Apple-style press: the control dips slightly while held, then settles back. */

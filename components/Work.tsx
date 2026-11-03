@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { projects, type Project } from "@/lib/content";
 import { EASE_OUT } from "@/lib/motion";
+import { Icon } from "./Icons";
 import { RevealText, RollLink } from "./ui";
 
 const primaryLink = (p: Project) => p.live ?? p.code;
@@ -67,9 +68,7 @@ export function Work() {
                   <h3 className="text-4xl font-normal tracking-tight lg:text-7xl">{title}</h3>
                 )}
                 <div className="col-start-2 text-sm lg:col-start-auto">
-                  <span className="emoji emoji-wiggle mr-2" aria-hidden>
-                    {p.emoji}
-                  </span>
+                  <Icon name={p.icon} draw className="icon-wiggle mr-2 -mt-0.5 align-middle text-base" />
                   {p.category}
                   <p className="mt-1 max-w-xs text-muted">{p.description}</p>
                   <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Tags">

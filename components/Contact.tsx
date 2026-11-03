@@ -5,6 +5,7 @@ import { useState } from "react";
 import { site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
 import { GetInTouch } from "./GetInTouch";
+import { Icon } from "./Icons";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 export function Contact() {
@@ -84,14 +85,9 @@ export function Contact() {
             </div>
             <div className="hidden sm:block">
               <span className="mb-2 block text-xs text-paper/40">Built with</span>
-              <span className="emoji emoji-wiggle" aria-hidden>
-                ☕
-              </span>{" "}
-              &amp;{" "}
-              <span className="emoji emoji-spin" aria-hidden>
-                ⚙️
-              </span>{" "}
-              in Delhi
+              <span className="group inline-flex items-center gap-1.5">
+                <Icon name="cup" className="icon-wiggle" /> &amp; <Icon name="gear" className="icon-spin" /> in Delhi
+              </span>
             </div>
           </div>
           <div>

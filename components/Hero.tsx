@@ -5,6 +5,7 @@ import { site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
 import { EASE_OUT } from "@/lib/motion";
 import { useLoaded } from "./Experience";
+import { Icon } from "./Icons";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 function Letters({ text, play, delay, className }: { text: string; play: boolean; delay: number; className?: string }) {
@@ -49,13 +50,13 @@ export function Hero() {
             </span>
             <span className="flex flex-wrap gap-x-3">
               <span>
-                <span className="emoji emoji-spin" aria-hidden>⚙️</span> DevOps
+                <Icon name="gear" draw className="icon-spin mr-1 -mt-0.5 align-middle" /> DevOps
               </span>
               <span>
-                <span className="emoji emoji-wiggle" aria-hidden>🤖</span> Automation
+                <Icon name="loop" draw className="icon-spin mr-1 -mt-0.5 align-middle" /> Automation
               </span>
               <span>
-                <span className="emoji emoji-wiggle" aria-hidden>🎨</span> Artist
+                <Icon name="brush" draw className="icon-wiggle mr-1 -mt-0.5 align-middle" /> Artist
               </span>
             </span>
           </motion.div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { art, artworks } from "@/lib/content";
 import { EASE_OUT, FADE_UP, SPRING_GENTLE } from "@/lib/motion";
+import { Icon } from "./Icons";
 import { Magnetic, RevealText } from "./ui";
 
 // The artist side: murals, the café, the fine-art society — plus a gallery once photos are added.
@@ -16,9 +17,7 @@ export function Art() {
           <span className="font-serif italic">
             <RevealText text="canvas" delay={0.1} />
           </span>{" "}
-          <span className="emoji emoji-sway align-top text-4xl md:text-6xl" aria-hidden>
-            🖌️
-          </span>
+          <Icon name="brush" draw strokeWidth={1} className="icon-wiggle align-top text-5xl md:text-7xl" />
         </h2>
         <span className="text-sm text-muted">(Art)</span>
       </div>
