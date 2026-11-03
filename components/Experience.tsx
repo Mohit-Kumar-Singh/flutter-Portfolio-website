@@ -1,7 +1,7 @@
 "use client";
 
 import Lenis from "lenis";
-import { AnimatePresence, MotionConfig, motion, useScroll, useSpring } from "motion/react";
+import { AnimatePresence, MotionConfig } from "motion/react";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Cursor } from "./Cursor";
 import { Preloader } from "./Preloader";
@@ -14,20 +14,7 @@ type ScrollControls = { setLocked: (locked: boolean) => void; scrollTo: (selecto
 const ScrollContext = createContext<ScrollControls>({ setLocked: () => {}, scrollTo: () => {} });
 export const useScrollControls = () => useContext(ScrollContext);
 
-// Thin accent line at the top that tracks reading progress.
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 40, restDelta: 0.001 });
-  return (
-    <motion.div
-      aria-hidden
-      className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-accent"
-      style={{ scaleX }}
-    />
-  );
-}
-
-// Wraps the page: smooth scroll, preloader, cursor, grain and scroll progress.
+// Wraps the page: smooth scroll, preloader, cursor and grain.
 export function Experience({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   const lenis = useRef<Lenis | null>(null);
@@ -76,7 +63,6 @@ export function Experience({ children }: { children: React.ReactNode }) {
       <LoadedContext.Provider value={loaded}>
         <ScrollContext.Provider value={controls}>
           <AnimatePresence>{!loaded && <Preloader key="preloader" onDone={handleDone} />}</AnimatePresence>
-          <ScrollProgress />
           {children}
           <Cursor />
           <div className="grain" aria-hidden />

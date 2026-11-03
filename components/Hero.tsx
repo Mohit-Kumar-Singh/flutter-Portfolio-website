@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion } from "motion/react";
 import { site } from "@/lib/content";
 import { EASE_OUT } from "@/lib/motion";
 import { useLoaded } from "./Experience";
@@ -30,19 +29,12 @@ function Letters({ text, play, delay, className }: { text: string; play: boolean
 
 export function Hero() {
   const loaded = useLoaded();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
 
   return (
-    <section id="top" ref={ref} className="relative flex min-h-svh flex-col justify-end overflow-hidden px-5 pb-8 pt-28 md:px-10 md:pb-10">
-      {/* Phones & tablets: status row pinned to the top, name at the bottom — no empty gap above. */}
-      <motion.div
-        style={{ y, opacity, scale }}
-        className="flex flex-1 origin-bottom flex-col justify-between lg:flex-none lg:justify-end"
-      >
+    <section id="top" className="relative flex min-h-svh flex-col justify-end px-5 pb-8 pt-28 md:px-10 md:pb-10">
+      {/* Phones & tablets: status row pinned to the top, name at the bottom — no empty gap above.
+          No scroll-linked motion here: it used to slide and fade the buttons out of view. */}
+      <div className="flex flex-1 flex-col justify-between lg:flex-none lg:justify-end">
         <div className="mb-10 flex items-start justify-between gap-6 text-sm md:mb-14">
           <motion.div
             className="max-w-xs text-muted"
@@ -51,10 +43,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 1 }}
           >
             <span className="mb-2 flex items-center gap-2 text-ink">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full motion-reduce:animate-none bg-accent opacity-60" />
-                <span className="relative inline-flex size-2 rounded-full bg-accent" />
-              </span>
+              <span className="size-2 rounded-full bg-accent" />
               {site.status}
             </span>
             {site.focus.replace(" & ", " · ")} · Artist
@@ -140,7 +129,7 @@ export function Hero() {
             </motion.a>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

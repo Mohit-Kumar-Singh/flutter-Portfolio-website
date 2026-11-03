@@ -117,8 +117,6 @@ export type Project = {
   // Optional links; `live` is preferred as the primary link. Items with neither are not clickable.
   live?: string;
   code?: string;
-  // Placeholder artwork until real images are added (two gradient stops).
-  colors: [string, string];
 };
 
 export const projects: Project[] = [
@@ -129,7 +127,6 @@ export const projects: Project[] = [
       "I automate build and release pipelines and the repetitive work around them, and help other teams streamline their processes so they ship faster.",
     year: "2023–now",
     stack: ["DevOps", "CI/CD", "Automation", "Process improvement"],
-    colors: ["#0B1B2E", "#4A8FD9"],
   },
   {
     title: "Wall Murals",
@@ -137,7 +134,6 @@ export const projects: Project[] = [
     description: "Hand-painted murals for homes, cafés and businesses — from first sketch to the final wall.",
     year: "",
     stack: ["Murals", "Painting", "Client work"],
-    colors: ["#2B1A12", "#E8894A"],
   },
   {
     title: "The Café",
@@ -145,7 +141,6 @@ export const projects: Project[] = [
     description: "Ran my own café — menu, people, suppliers and the space itself, which I painted.",
     year: "",
     stack: ["Business", "Operations", "Interior art"],
-    colors: ["#2A2018", "#C9A27A"],
   },
   {
     title: "Employee System",
@@ -154,6 +149,5 @@ export const projects: Project[] = [
     year: "2023",
     stack: ["Java", "Spring Boot", "REST"],
     code: "https://github.com/Mohit-Kumar-Singh/ems-spring-assignment-3",
-    colors: ["#3D3428", "#E6C79C"],
   },
 ];

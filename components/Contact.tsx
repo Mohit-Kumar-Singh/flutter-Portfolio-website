@@ -1,15 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
-import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import { site } from "@/lib/content";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 export function Contact() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [-90, 0]);
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -24,8 +20,8 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" ref={ref} className="relative overflow-hidden bg-ink text-paper">
-      <motion.div style={{ y }} className="flex min-h-svh flex-col justify-between px-5 pb-8 pt-32 md:px-10 md:pb-10 md:pt-40">
+    <section id="contact" className="relative bg-ink text-paper">
+      <div className="flex min-h-svh flex-col justify-between px-5 pb-8 pt-32 md:px-10 md:pb-10 md:pt-40">
         <div>
           <span className="mb-10 block text-sm text-paper/50">(Contact)</span>
           <h2 className="text-[13vw] leading-[0.9] tracking-[-0.04em] md:text-[9vw]">
@@ -75,9 +71,9 @@ export function Contact() {
               href={`mailto:${site.email}`}
               className="flex size-40 items-center justify-center rounded-full bg-accent text-lg text-[#111] transition-transform duration-500 ease-out-expo hover:scale-105 md:size-52"
             >
-              <motion.span style={{ rotate }} className="inline-flex items-center gap-2">
+              <span className="inline-flex items-center gap-2">
                 Get in touch ↗
-              </motion.span>
+              </span>
             </a>
           </Magnetic>
         </div>
@@ -106,7 +102,7 @@ export function Contact() {
             </div>
           </div>
         </footer>
-      </motion.div>
+      </div>
     </section>
   );
 }
