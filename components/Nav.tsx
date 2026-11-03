@@ -7,9 +7,11 @@ import { useLoaded } from "./Experience";
 import { ThemeToggle } from "./ThemeToggle";
 import { Magnetic, RollLink } from "./ui";
 
+// `wide` links are hidden on narrow phones so the bar never wraps.
 const LINKS = [
   { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
+  { label: "About", href: "#about", wide: true },
+  { label: "Journey", href: "#journey" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -37,9 +39,11 @@ export function Nav() {
       </Magnetic>
       <nav className="flex items-center gap-5 text-sm md:gap-10">
         {LINKS.map((l) => (
-          <Magnetic key={l.href} strength={0.3}>
-            <RollLink href={l.href}>{l.label}</RollLink>
-          </Magnetic>
+          <span key={l.href} className={l.wide ? "hidden sm:contents" : "contents"}>
+            <Magnetic strength={0.3}>
+              <RollLink href={l.href}>{l.label}</RollLink>
+            </Magnetic>
+          </span>
         ))}
         <Magnetic strength={0.4}>
           <ThemeToggle />

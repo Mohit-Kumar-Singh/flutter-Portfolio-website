@@ -27,7 +27,9 @@ export function RevealText({
       : { animate: play ? "show" : "hidden" };
 
   return (
-    <motion.span className={className} aria-label={text} initial="hidden" {...trigger}>
+    <motion.span className={className} initial="hidden" {...trigger}>
+      {/* Screen readers get the plain sentence; the split, animated words are hidden from them. */}
+      <span className="sr-only">{text}</span>
       {words.map((word, i) => (
         <span key={i} aria-hidden>
           <span className="-mb-[0.12em] inline-block overflow-hidden pb-[0.12em] align-top">

@@ -33,20 +33,32 @@ export function Preloader({ onDone }: { onDone: () => void }) {
   const bar = useTransform(progress, (v) => v / 100);
 
   useEffect(() => {
-    const controls = animate(progress, 100, {
+    const finish = () => {
+      try {
+        sessionStorage.setItem(SEEN_KEY, "1");
+      } catch {}
+      onDone();
+    };
+    let controls = animate(progress, 100, {
       duration: seen ? 0.4 : 1.6,
       ease: [0.65, 0, 0.35, 1],
-      onComplete: () => {
-        try {
-          sessionStorage.setItem(SEEN_KEY, "1");
-        } catch {}
-        onDone();
-      },
+      onComplete: finish,
     });
+    // Any click, tap or key press fast-forwards the intro.
+    const skip = () => {
+      controls.stop();
+      controls = animate(progress, 100, { duration: 0.25, ease: "easeOut", onComplete: finish });
+      window.removeEventListener("pointerdown", skip);
+      window.removeEventListener("keydown", skip);
+    };
+    window.addEventListener("pointerdown", skip);
+    window.addEventListener("keydown", skip);
     const id = setInterval(() => setGreeting((g) => (g + 1) % GREETINGS.length), 230);
     return () => {
       controls.stop();
       clearInterval(id);
+      window.removeEventListener("pointerdown", skip);
+      window.removeEventListener("keydown", skip);
     };
   }, [onDone, progress, seen]);
 
@@ -81,8 +93,11 @@ export function Preloader({ onDone }: { onDone: () => void }) {
         </div>
 
         <div className="flex items-end justify-between">
-          <div className="h-px w-1/3 bg-paper/20">
-            <motion.div className="h-px origin-left bg-paper" style={{ scaleX: bar }} />
+          <div className="w-1/3">
+            <span className="mb-3 block text-xs text-paper/40">Tap anywhere to skip</span>
+            <div className="h-px bg-paper/20">
+              <motion.div className="h-px origin-left bg-paper" style={{ scaleX: bar }} />
+            </div>
           </div>
           <motion.span className="font-serif text-[22vw] leading-[0.8] tabular-nums md:text-[14vw]">{count}</motion.span>
         </div>

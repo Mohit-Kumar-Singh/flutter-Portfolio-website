@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
 import { site } from "@/lib/content";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
@@ -10,6 +10,18 @@ export function Contact() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"]);
   const rotate = useTransform(scrollYProgress, [0, 1], [-90, 0]);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(site.email);
+    } catch {
+      window.location.href = `mailto:${site.email}`;
+      return;
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <section id="contact" ref={ref} className="relative overflow-hidden bg-ink text-paper">
@@ -28,15 +40,36 @@ export function Contact() {
 
         <div className="relative my-16 flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
           <div className="absolute inset-x-0 top-1/2 hidden h-px bg-paper/15 md:block" />
+          {/* Copies the address — mailto alone does nothing on machines without a mail app. */}
           <Magnetic strength={0.4} className="relative">
-            <a
-              href={`mailto:${site.email}`}
-              className="group relative block overflow-hidden rounded-full border border-paper/20 bg-ink px-8 py-5 text-lg md:text-2xl"
+            <button
+              type="button"
+              onClick={copyEmail}
+              data-cursor={copied ? "Copied" : "Copy"}
+              aria-label={`Copy email address ${site.email}`}
+              className="group relative block overflow-hidden rounded-full border border-paper/20 bg-ink px-8 py-5 text-left text-lg md:text-2xl"
             >
               <span className="absolute inset-0 translate-y-full rounded-full bg-accent transition-transform duration-700 ease-out-expo group-hover:translate-y-0" />
-              <span className="relative">{site.email}</span>
-            </a>
+              <span className="relative flex items-center gap-4">
+                {site.email}
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={copied ? "done" : "copy"}
+                    className="text-sm opacity-60"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 0.6, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    {copied ? "Copied ✓" : "Copy"}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </button>
           </Magnetic>
+          <span role="status" className="sr-only">
+            {copied ? "Email address copied" : ""}
+          </span>
           <Magnetic strength={0.5} className="relative">
             <a
               href={`mailto:${site.email}`}
@@ -52,8 +85,8 @@ export function Contact() {
         <footer className="flex flex-col gap-8 text-sm md:flex-row md:items-end md:justify-between">
           <div className="flex gap-10">
             <div>
-              <span className="mb-2 block text-xs text-paper/40">Version</span>
-              {site.year} © Edition
+              <span className="mb-2 block text-xs text-paper/40">Last updated</span>
+              {site.updated}
             </div>
             <div>
               <span className="mb-2 block text-xs text-paper/40">Local time</span>

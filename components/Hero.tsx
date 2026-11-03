@@ -9,7 +9,8 @@ import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 function Letters({ text, play, delay, className }: { text: string; play: boolean; delay: number; className?: string }) {
   return (
-    <span className={`flex overflow-hidden pb-[0.06em] ${className ?? ""}`} aria-label={text}>
+    <span className={`flex overflow-hidden pb-[0.06em] ${className ?? ""}`}>
+      <span className="sr-only">{text}</span>
       {[...text].map((ch, i) => (
         <motion.span
           key={i}
@@ -53,9 +54,9 @@ export function Hero() {
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
                 <span className="relative inline-flex size-2 rounded-full bg-accent" />
               </span>
-              Available for new projects
+              {site.status}
             </span>
-            {site.role}
+            Full-stack · Flutter · Motion
           </motion.div>
           <motion.div
             className="text-right text-muted"

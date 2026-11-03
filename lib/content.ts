@@ -3,23 +3,28 @@
 export const site = {
   firstName: "Mohit",
   lastName: "Kumar Singh",
-  role: "Full-stack Developer",
-  location: "India",
+  role: "Software Developer",
+  company: "Volkswagen Group Technology Solutions India",
+  // Short status shown with the pulsing dot in the hero.
+  status: "Software Developer at Volkswagen Group",
+  location: "Delhi, India",
   timeZone: "Asia/Kolkata",
   year: "2026",
+  updated: "Nov 2026",
+  url: "https://mohit-portfolio-five-tau.vercel.app",
   email: "mks61201625@gmail.com",
   // Put your CV at public/resume.pdf and set this to "/resume.pdf" to show the Resume button.
   resume: "",
   portrait: "/images/portrait.jpg",
   intro:
-    "I build software that feels quiet, deliberate and alive — from mobile apps to full-stack platforms, where every detail has a reason to exist.",
+    "Software developer at Volkswagen Group. Outside work I build full-stack products end to end — from Supabase backends to interfaces with an artist's eye for detail.",
   about:
-    "I've always wanted to combine technology with creativity and art. I started with Flutter apps, studied Computer Science, and today I build full-stack products end to end — databases, interfaces and the small details in between.",
+    "I've always wanted to combine technology with creativity and art. I led my college's fine-art society, started with Flutter apps, and today I write software at Volkswagen Group while building full-stack products of my own — databases, interfaces and the small details in between.",
   education: [
-    { title: "B.Tech, Computer Science", place: "AKGEC, Ghaziabad" },
-    { title: "Class XII — 93.2% (PCM)", place: "Blooming Dale School, Badaun · 2018" },
+    { title: "B.Tech, Computer Science", place: "AKGEC, Ghaziabad · 2019–2023" },
+    { title: "Class XII — 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
   ],
-  offScreen: "Art & craft, badminton, and one more episode of a good series.",
+  offScreen: "Art, paper carving, badminton, and one more episode of a good series.",
   socials: [
     { label: "GitHub", href: "https://github.com/Mohit-Kumar-Singh" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mohit-kumar-singh-mks" },
@@ -29,9 +34,9 @@ export const site = {
 
 export const skills: { group: string; items: string[] }[] = [
   { group: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Motion"] },
-  { group: "Backend & Data", items: ["Supabase", "PostgreSQL", "Java", "Spring Boot", "REST APIs"] },
+  { group: "Backend & Data", items: ["Supabase", "PostgreSQL", "SQL", "Java", "Spring Boot", "REST APIs"] },
   { group: "Mobile", items: ["Flutter", "Dart", "PWAs"] },
-  { group: "Tools & More", items: ["Git & GitHub", "Vercel", "Figma", "C++", "WhatsApp Cloud API"] },
+  { group: "Tools & More", items: ["C++ & DSA", "Git & GitHub", "Vercel", "Figma", "WhatsApp Cloud API"] },
 ];
 
 export const timeline: { year: string; items: { title: string; detail: string }[] }[] = [
@@ -45,13 +50,20 @@ export const timeline: { year: string; items: { title: string; detail: string }[
   {
     year: "2023",
     items: [
-      { title: "Final-year project", detail: "Malicious URL detection app built with Flutter." },
-      { title: "Java & Spring Boot", detail: "Built employee management systems and TypeScript projects." },
+      {
+        title: "Software Developer · Volkswagen Group",
+        detail: "Joined Volkswagen Group Technology Solutions India full-time in Gurugram (Aug 2023 – present).",
+      },
+      { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: a Flutter app that detects malicious URLs." },
     ],
   },
   {
     year: "2020",
     items: [
+      {
+        title: "Team Head · Team Footprints",
+        detail: "Artist and head of operations of AKGEC's fine-art society for 3+ years — ran blood donation camps, anti-ragging drives and Azadi Ka Amrit Mahotsav events.",
+      },
       { title: "Conatus trainee", detail: "Learned Flutter by shipping apps — chat, meals, expense tracker and my first portfolio." },
     ],
   },
@@ -61,7 +73,7 @@ export const timeline: { year: string; items: { title: string; detail: string }[
   },
   {
     year: "2018",
-    items: [{ title: "Class XII — 93.2% (PCM)", detail: "Blooming Dale School, Badaun." }],
+    items: [{ title: "Class XII — 93.2% (PCM)", detail: "Bloomingdale School, Badaun. Head of co-cultural activities." }],
   },
 ];
 
