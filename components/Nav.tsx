@@ -67,7 +67,7 @@ export function Nav() {
             }}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="-m-3 flex items-center gap-2 p-3 sm:hidden"
+            className="press -m-3 flex items-center gap-2 p-3 sm:hidden"
           >
             <span className="flex w-4 flex-col gap-[3px]" aria-hidden>
               <span className="h-px w-full bg-current" />

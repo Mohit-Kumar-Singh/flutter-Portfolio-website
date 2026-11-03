@@ -56,7 +56,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
-      className="-m-3 flex size-11 items-center justify-center"
+      className="press -m-3 flex size-11 items-center justify-center"
     >
       {/* Sun that morphs into a crescent moon */}
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden>

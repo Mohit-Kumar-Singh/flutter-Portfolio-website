@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
+import { GetInTouch } from "./GetInTouch";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 export function Contact() {
@@ -45,7 +46,7 @@ export function Contact() {
               onClick={copyEmail}
               data-cursor={copied ? "Copied" : "Copy"}
               aria-label={`Copy email address ${site.email}`}
-              className="group relative block overflow-hidden rounded-full border border-paper/20 bg-ink px-8 py-5 text-left text-lg md:text-2xl"
+              className="press group relative block overflow-hidden rounded-full border border-paper/20 bg-ink px-8 py-5 text-left text-lg md:text-2xl"
             >
               <span className="absolute inset-0 translate-y-full rounded-full bg-accent transition-transform duration-700 ease-out-expo group-hover:translate-y-0" />
               <span className="relative flex items-center gap-4">
@@ -68,17 +69,7 @@ export function Contact() {
           <span role="status" className="sr-only">
             {copied ? "Email address copied" : ""}
           </span>
-          <Magnetic strength={0.5} className="relative">
-            <a
-              href={`mailto:${site.email}`}
-              onClick={() => feedback("tap")}
-              className="flex size-40 items-center justify-center rounded-full bg-accent text-lg text-[#111] transition-transform duration-500 ease-out-expo hover:scale-105 md:size-52"
-            >
-              <span className="inline-flex items-center gap-2">
-                Get in touch ↗
-              </span>
-            </a>
-          </Magnetic>
+          <GetInTouch />
         </div>
 
         <footer className="flex flex-col gap-8 text-sm md:flex-row md:items-end md:justify-between">

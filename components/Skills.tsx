@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { skills } from "@/lib/content";
-import { EASE_OUT } from "@/lib/motion";
+import { EASE_OUT, SPRING_GENTLE } from "@/lib/motion";
 import { RevealText } from "./ui";
 
 export function Skills() {
@@ -42,8 +42,11 @@ export function Skills() {
               {g.items.map((s) => (
                 <motion.li
                   key={s}
-                  variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-                  transition={{ duration: 0.6, ease: EASE_OUT }}
+                  variants={{
+                    hidden: { opacity: 0, y: 14, filter: "blur(6px)" },
+                    show: { opacity: 1, y: 0, filter: "blur(0px)" },
+                  }}
+                  transition={SPRING_GENTLE}
                   className="rounded-full border border-ink/15 px-4 py-2 text-sm transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-paper"
                 >
                   {s}

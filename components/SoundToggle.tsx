@@ -17,7 +17,7 @@ export function SoundToggle() {
         setSoundOn(!on);
         if (!on) feedback("toggle");
       }}
-      className="-m-3 flex size-11 items-center justify-center"
+      className="press -m-3 flex size-11 items-center justify-center"
     >
       <span className="flex h-3.5 items-end gap-[3px]" aria-hidden>
         {[0, 1, 2].map((i) => (

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { art, artworks } from "@/lib/content";
-import { EASE_OUT } from "@/lib/motion";
+import { EASE_OUT, FADE_UP, SPRING_GENTLE } from "@/lib/motion";
 import { Magnetic, RevealText } from "./ui";
 
 // The artist side: murals, the café, the fine-art society — plus a gallery once photos are added.
@@ -33,7 +33,7 @@ export function Art() {
               href={art.instagram.href}
               target="_blank"
               rel="noreferrer"
-              className="group relative block overflow-hidden rounded-full border border-ink/20 px-5 py-3 text-sm"
+              className="press group relative block overflow-hidden rounded-full border border-ink/20 px-5 py-3 text-sm"
             >
               <span className="absolute inset-0 translate-y-full rounded-full bg-accent transition-transform duration-500 ease-out-expo group-hover:translate-y-0" />
               <span className="relative">Follow {art.instagram.handle} ↗</span>
@@ -46,10 +46,8 @@ export function Art() {
             <motion.li
               key={h.title}
               className="relative border-t border-line py-7"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-              transition={{ duration: 0.8, ease: EASE_OUT, delay: (i % 2) * 0.1 }}
+              {...FADE_UP}
+              transition={{ ...SPRING_GENTLE, delay: (i % 2) * 0.08 }}
             >
               <span className="mb-4 block text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mb-2 text-2xl tracking-tight md:text-3xl">{h.title}</h3>

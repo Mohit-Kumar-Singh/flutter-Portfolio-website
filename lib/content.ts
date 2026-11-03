@@ -15,6 +15,7 @@ export const site = {
   updated: "Nov 2026",
   url: "https://mohit-portfolio-five-tau.vercel.app",
   email: "mks61201625@gmail.com",
+  phone: { display: "+91 85271 72366", e164: "+918527172366" },
   // Put your CV at public/resume.pdf and set this to "/resume.pdf" to show the Resume button.
   resume: "",
   portrait: "/images/portrait.jpg",

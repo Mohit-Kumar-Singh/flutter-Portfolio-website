@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { site } from "@/lib/content";
-import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
+import { EASE_IN_OUT, SPRING_GENTLE } from "@/lib/motion";
 import { feedback } from "@/lib/feedback";
 import { useScrollControls } from "./Experience";
 
@@ -69,10 +69,10 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
                 href={l.href}
                 onClick={(e) => go(e, l.href)}
                 className="flex items-baseline gap-4 border-b border-paper/10 py-3 text-5xl tracking-tight"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: 20, transition: { duration: 0.2 } }}
-                transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.25 + i * 0.06 }}
+                transition={{ ...SPRING_GENTLE, delay: 0.2 + i * 0.05 }}
               >
                 <span className="text-xs text-paper/40">{String(i + 1).padStart(2, "0")}</span>
                 <span className={i % 2 ? "font-serif italic" : ""}>{l.label}</span>

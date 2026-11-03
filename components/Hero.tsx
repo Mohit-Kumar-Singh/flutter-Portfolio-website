@@ -96,7 +96,7 @@ export function Hero() {
                   <a
                     href="#contact"
                     onClick={() => feedback("tap")}
-                    className="group relative block overflow-hidden rounded-full bg-ink px-6 py-3 text-sm text-paper"
+                    className="press group relative block overflow-hidden rounded-full bg-ink px-6 py-3 text-sm text-paper"
                   >
                     <span className="absolute inset-0 translate-y-full rounded-full bg-accent transition-transform duration-500 ease-out-expo group-hover:translate-y-0" />
                     <span className="relative">Let&apos;s talk</span>

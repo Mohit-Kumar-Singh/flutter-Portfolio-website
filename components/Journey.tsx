@@ -3,7 +3,7 @@
 import { motion, useScroll, useSpring } from "motion/react";
 import { useRef } from "react";
 import { timeline } from "@/lib/content";
-import { EASE_OUT } from "@/lib/motion";
+import { FADE_UP, SPRING_GENTLE } from "@/lib/motion";
 import { RevealText } from "./ui";
 
 // Year-by-year timeline; the vertical rule draws itself as you scroll through it.
@@ -49,10 +49,8 @@ export function Journey() {
                 {entry.items.map((item, i) => (
                   <motion.div
                     key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-                    transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.1 + i * 0.1 }}
+                    {...FADE_UP}
+                    transition={{ ...SPRING_GENTLE, delay: 0.08 + i * 0.08 }}
                   >
                     <h3 className="mb-2 text-xl tracking-tight">{item.title}</h3>
                     <p className="max-w-sm leading-snug text-muted">{item.detail}</p>

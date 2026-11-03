@@ -157,3 +157,11 @@ html.has-cursor * {
 @media (prefers-reduced-motion: reduce) {
   .emoji-wiggle, .emoji-spin, .emoji-sway, .group:hover .emoji-wiggle { animation: none !important; }
 }
+
+/* Apple-style press: the control dips slightly while held, then settles back. */
+.press {
+  transition: scale 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.press:active {
+  scale: 0.96;
+}
