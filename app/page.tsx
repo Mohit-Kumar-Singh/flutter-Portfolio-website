@@ -11,8 +11,14 @@ import { Work } from "@/components/Work";
 export default function Home() {
   return (
     <Experience>
+      <a
+        href="#main"
+        className="sr-only z-[90] rounded-full bg-ink px-5 py-3 text-sm text-paper focus:not-sr-only focus:fixed focus:left-5 focus:top-5"
+      >
+        Skip to content
+      </a>
       <Nav />
-      <main>
+      <main id="main">
         <Hero />
         <Work />
         <Marquee text="Design — Develop — Animate —" />

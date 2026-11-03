@@ -24,41 +24,45 @@ export function Journey() {
         <span className="text-sm text-muted">(Timeline)</span>
       </div>
 
-      <ol ref={ref} className="relative md:ml-[calc(25%+1rem)]">
-        <span className="absolute bottom-0 left-[5px] top-2 w-px bg-line" />
+      {/* The rule lives beside the list, not inside it — an <ol> may only contain <li>s. */}
+      <div className="relative md:ml-[calc(25%+1rem)]">
+        <span aria-hidden className="absolute bottom-0 left-[5px] top-2 w-px bg-line" />
         <motion.span
+          aria-hidden
           className="absolute bottom-0 left-[5px] top-2 w-px origin-top bg-ink"
           style={{ scaleY: progress }}
         />
-        {timeline.map((entry) => (
-          <li key={entry.year} className="relative pb-14 pl-10 last:pb-0 md:pb-20">
-            <motion.span
-              className="absolute left-0 top-2 size-[11px] rounded-full border border-ink bg-paper"
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true, margin: "0px 0px -20% 0px" }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            />
-            <span className="mb-5 block font-serif text-4xl italic md:text-5xl">
-              <RevealText text={entry.year} />
-            </span>
-            <div className="grid gap-8 md:grid-cols-2">
-              {entry.items.map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-                  transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.1 + i * 0.1 }}
-                >
-                  <h3 className="mb-2 text-xl tracking-tight">{item.title}</h3>
-                  <p className="max-w-sm leading-snug text-muted">{item.detail}</p>
-                </motion.div>
-              ))}
-            </div>
-          </li>
-        ))}
-      </ol>
+        <ol ref={ref}>
+          {timeline.map((entry) => (
+            <li key={entry.year} className="relative pb-14 pl-10 last:pb-0 md:pb-20">
+              <motion.span
+                className="absolute left-0 top-2 size-[11px] rounded-full border border-ink bg-paper"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: "0px 0px -20% 0px" }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              />
+              <span className="mb-5 block font-serif text-4xl italic md:text-5xl">
+                <RevealText text={entry.year} />
+              </span>
+              <div className="grid gap-8 md:grid-cols-2">
+                {entry.items.map((item, i) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                    transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.1 + i * 0.1 }}
+                  >
+                    <h3 className="mb-2 text-xl tracking-tight">{item.title}</h3>
+                    <p className="max-w-sm leading-snug text-muted">{item.detail}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }

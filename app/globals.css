@@ -36,6 +36,21 @@
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Scale the whole rem-based system up on wide screens so body copy keeps pace with the display type. */
+@media (min-width: 1600px) {
+  html { font-size: 17px; }
+}
+@media (min-width: 2200px) {
+  html { font-size: 19px; }
+}
+
+/* One consistent, visible keyboard focus ring across links, buttons and inputs. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 body {
   background: var(--paper);
   color: var(--ink);

@@ -5,6 +5,7 @@ import {
   useAnimationFrame,
   useMotionValue,
   useInView,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -27,9 +28,10 @@ export function Marquee({ text, baseVelocity = -2 }: { text: string; baseVelocit
   const x = useTransform(baseX, (v) => `${wrap(-25, -50, v)}%`);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
+  const reduced = useReducedMotion();
 
   useAnimationFrame((_, delta) => {
-    if (!inView) return; // no work while off-screen
+    if (!inView || reduced) return; // no work while off-screen, and no endless motion for reduced-motion users
     let move = direction.current * baseVelocity * (delta / 1000);
     if (factor.get() < 0) direction.current = -1;
     else if (factor.get() > 0) direction.current = 1;

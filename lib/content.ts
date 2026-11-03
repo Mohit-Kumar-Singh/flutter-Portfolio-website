@@ -25,6 +25,12 @@ export const site = {
     { title: "Class XII — 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
   ],
   offScreen: "Art, paper carving, badminton, and one more episode of a good series.",
+  // "At a glance" numbers in the About section.
+  stats: [
+    { value: 3, suffix: "+", label: "Years at Volkswagen Group" },
+    { value: 6, label: "Projects shipped" },
+    { value: 3, suffix: "+", label: "Years leading Team Footprints" },
+  ],
   socials: [
     { label: "GitHub", href: "https://github.com/Mohit-Kumar-Singh" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mohit-kumar-singh-mks" },
@@ -82,7 +88,10 @@ export type Project = {
   category: string;
   description: string;
   year: string;
-  href: string;
+  stack: string[];
+  // At least one of these; `live` is preferred as the primary link.
+  live?: string;
+  code?: string;
   // Placeholder artwork until real images are added (two gradient stops).
   colors: [string, string];
 };
@@ -93,7 +102,9 @@ export const projects: Project[] = [
     category: "Operations PWA · Supabase",
     description: "Runs a dairy business end to end — herd, deliveries, sales and a WhatsApp ordering bot.",
     year: "2026",
-    href: "https://milk-garage.vercel.app",
+    stack: ["React", "TypeScript", "Supabase", "Tailwind", "PWA"],
+    live: "https://milk-garage.vercel.app",
+    code: "https://github.com/Mohit-Kumar-Singh/M-cli",
     colors: ["#11161C", "#5FA585"],
   },
   {
@@ -101,7 +112,8 @@ export const projects: Project[] = [
     category: "Full-stack · WhatsApp API",
     description: "Tracks IPO applications across demat accounts with WhatsApp alerts on allotment.",
     year: "2026",
-    href: "https://github.com/Mohit-Kumar-Singh/ipo-ledger",
+    stack: ["React", "Vite", "Supabase", "Edge Functions", "WhatsApp API"],
+    code: "https://github.com/Mohit-Kumar-Singh/ipo-ledger",
     colors: ["#14161F", "#7B8CFF"],
   },
   {
@@ -109,7 +121,8 @@ export const projects: Project[] = [
     category: "Flutter · Final-year project",
     description: "A mobile app that flags malicious links before you open them.",
     year: "2023",
-    href: "https://github.com/Mohit-Kumar-Singh/malicious-url-",
+    stack: ["Flutter", "Dart"],
+    code: "https://github.com/Mohit-Kumar-Singh/malicious-url-",
     colors: ["#1B1B1B", "#FF4A1C"],
   },
   {
@@ -117,7 +130,8 @@ export const projects: Project[] = [
     category: "Java · Spring Boot",
     description: "Employee management backend with a REST API.",
     year: "2023",
-    href: "https://github.com/Mohit-Kumar-Singh/ems-spring-assignment-3",
+    stack: ["Java", "Spring Boot", "REST"],
+    code: "https://github.com/Mohit-Kumar-Singh/ems-spring-assignment-3",
     colors: ["#3D3428", "#E6C79C"],
   },
   {
@@ -125,7 +139,8 @@ export const projects: Project[] = [
     category: "Flutter · Mobile",
     description: "Real-time messaging app from my Flutter beginnings.",
     year: "2020",
-    href: "https://github.com/Mohit-Kumar-Singh/Chat-app",
+    stack: ["Flutter", "Dart"],
+    code: "https://github.com/Mohit-Kumar-Singh/Chat-app",
     colors: ["#2F3B2F", "#B9C9A7"],
   },
   {
@@ -133,7 +148,8 @@ export const projects: Project[] = [
     category: "Flutter · Conatus",
     description: "My very first portfolio, built as a Flutter app during Conatus training.",
     year: "2020",
-    href: "https://github.com/Mohit-Kumar-Singh/flutter-Portfolio-website/tree/flutter-legacy",
+    stack: ["Flutter", "Dart"],
+    code: "https://github.com/Mohit-Kumar-Singh/flutter-Portfolio-website/tree/flutter-legacy",
     colors: ["#20182A", "#D69BC6"],
   },
 ];
