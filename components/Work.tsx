@@ -66,6 +66,14 @@ export function Work() {
                   <Icon name={p.icon} draw className="icon-wiggle mr-2 -mt-0.5 align-middle text-base" />
                   {p.category}
                   <p className="mt-1 max-w-xs text-muted">{p.description}</p>
+                  {p.partner && (
+                    <p className="relative z-10 mt-2 text-muted">
+                      With{" "}
+                      <RollLink href={p.partner.href} external className="text-ink">
+                        {`${p.partner.name} ↗`}
+                      </RollLink>
+                    </p>
+                  )}
                   <ul className="mt-3 hidden flex-wrap gap-1.5 sm:flex" aria-label="Tags">
                     {p.stack.map((s) => (
                       <li key={s} className="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">

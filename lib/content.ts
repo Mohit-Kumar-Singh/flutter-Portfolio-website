@@ -22,7 +22,7 @@ export const site = {
   resume: "",
   portrait: "/images/portrait.jpg",
   intro:
-    `I'm a DevOps engineer at ${employer.name}, automating build and release pipelines and helping teams improve how they work. I'm also an artist. I make Sanjhi art, paint murals, and I once ran a café.`,
+    `I'm a DevOps engineer at ${employer.name}, automating build and release pipelines and helping teams improve how they work. I'm also an artist. I make Sanjhi art, paint murals, and I once ran a café, Expect-o-cafeteria.`,
   about:
     `I studied Computer Science at AKGEC and spent three years running the college's fine-art society. Since ${employer.startYear} I've been a DevOps engineer at ${employer.name}. Outside work I still make art: Sanjhi, murals and drawings.`,
   education: [
@@ -51,7 +51,7 @@ export const art = {
     "I've made art since school. Most of it is Sanjhi, cut by hand with a surgical blade.",
   highlights: [
     { title: "Freelance wall murals", detail: "Murals painted for clients as a freelancer." },
-    { title: "Ran a café", detail: "Owned and ran my own café." },
+    { title: "Expect-o-cafeteria", detail: "Ran my own café, Expect-o-cafeteria, with Avinash Rai." },
     { title: "Team Footprints", detail: "Artist and head of operations at AKGEC's fine-art society for over three years." },
     { title: "Sanjhi art", detail: "Cut by hand with a surgical blade. One piece takes 5 to 14 hours." },
   ],
@@ -123,6 +123,8 @@ export type Project = {
   stack: string[];
   // Shows the title as the animated employer name (see lib/employer.ts).
   company?: boolean;
+  // Someone you did it with, credited (and linked) under the description.
+  partner?: { name: string; href: string };
   // Optional links; `live` is preferred as the primary link. Items with neither are not clickable.
   live?: string;
   code?: string;
@@ -148,12 +150,13 @@ export const projects: Project[] = [
     stack: ["Murals", "Painting", "Client work"],
   },
   {
-    title: "The Café",
-    category: "Owner · Operations",
+    title: "Expect-o-cafeteria",
+    category: "Café · Co-run",
     icon: "cup",
-    description: "I ran my own café: the menu, the people and the suppliers.",
+    description: "A café I ran with a partner: the menu, the people and the suppliers.",
+    partner: { name: "Avinash Rai", href: "https://www.linkedin.com/in/avinash-rai-23415a160/" },
     year: "",
-    stack: ["Business", "Operations", "Interior art"],
+    stack: ["Business", "Operations"],
   },
 ];
 
@@ -164,7 +167,15 @@ export const projects: Project[] = [
 // Example: { title: "Docker & Kubernetes: The Practical Guide", issuer: "Udemy", date: "Mar 2026",
 //            url: "https://www.udemy.com/certificate/UC-xxxx/", image: "/certificates/docker.jpg" }
 export type Certification = { title: string; issuer: string; date: string; url?: string; image?: string };
-export const certifications: Certification[] = [];
+export const certifications: Certification[] = [
+  {
+    title: "Agentic AI with CrewAI & Agentic Design Patterns",
+    issuer: "Udemy",
+    date: "Nov 2026",
+    url: "https://www.udemy.com/certificate/UC-1156cfcc-9f94-439a-b7cc-cf88e5095a32/",
+    image: "/certificates/agentic-ai-crewai.jpg",
+  },
+];
 
 // One object per project. Links are optional.
 // Example: { title: "Release bot", description: "Posts deploy status to Teams.", tags: ["Python", "CI/CD"],
