@@ -30,11 +30,6 @@ export const site = {
     { title: "Class XII, 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
   ],
   offScreen: "Badminton, art, and a good series.",
-  // "At a glance" numbers in the About section.
-  stats: [
-    { value: 3, suffix: "+", label: "Years at Volkswagen Group" },
-    { value: 3, suffix: "+", label: "Years leading Team Footprints" },
-  ],
   socials: [
     { label: "GitHub", href: "https://github.com/Mohit-Kumar-Singh" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/mohit-kumar-singh-mks" },

@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { animate, motion, MotionValue, useInView, useMotionValue, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import { motion, MotionValue, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { site } from "@/lib/content";
-import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
+import { EASE_IN_OUT } from "@/lib/motion";
 import { Term, termFor } from "./Term";
 import { RevealText } from "./ui";
 
@@ -15,37 +15,6 @@ function Word({ word, progress, range }: { word: string; progress: MotionValue<n
     <motion.span style={{ opacity }} className="inline-block">
       {termFor(word) ? <Term word={termFor(word)!}>{word}</Term> : word}&nbsp;
     </motion.span>
-  );
-}
-
-// A key fact whose number counts up the first time it scrolls into view.
-function Stat({ value, suffix, label }: { value: number; suffix?: string; label: string }) {
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
-  const count = useMotionValue(0);
-  const shown = useTransform(count, (v) => Math.round(v));
-
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(count, value, { duration: 1.6, ease: EASE_OUT });
-    return () => controls.stop();
-  }, [inView, count, value]);
-
-  return (
-    // dt comes first for screen readers; flex-col-reverse puts the number on top visually.
-    <div className="flex flex-col-reverse justify-end gap-2">
-      <dt className="text-xs text-muted md:text-sm">{label}</dt>
-      <dd ref={ref} className="font-serif text-5xl italic leading-none md:text-7xl">
-        <span className="sr-only">
-          {value}
-          {suffix}
-        </span>
-        <span aria-hidden>
-          <motion.span>{shown}</motion.span>
-          {suffix}
-        </span>
-      </dd>
-    </div>
   );
 }
 
@@ -96,13 +65,7 @@ export function About() {
             ))}
           </p>
 
-          <dl className="mt-20 grid grid-cols-2 gap-6 border-y border-line py-8 md:gap-10">
-            {site.stats.map((st) => (
-              <Stat key={st.label} {...st} />
-            ))}
-          </dl>
-
-          <div className="mt-16 grid gap-12 md:grid-cols-2">
+          <div className="mt-20 grid gap-12 md:grid-cols-2">
             <div>
               <h3 className="mb-6 text-sm text-muted">Education</h3>
               {site.education.map((e, i) => (
