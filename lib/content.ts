@@ -83,7 +83,7 @@ export const artworks: { src: string; title: string; detail?: string }[] = [
 export const skills: { group: string; items: string[] }[] = [
   { group: "DevOps & Automation", items: ["CI/CD", "Docker", "GitHub Actions", "Linux", "Scripting", "Process automation"] },
   { group: "AI", items: ["LLM apps", "Prompt engineering", "AI agents", "Python"] },
-  { group: "Code & Data", items: ["Java", "Spring Boot", "SQL", "TypeScript", "C++ & DSA", "Git & GitHub"] },
+  { group: "Build & Manage", items: ["Vibe coding", "UI/UX design (basics)", "Management", "Problem-solving through automation"] },
   { group: "Art", items: ["Wall murals", "Painting", "Sanjhi art", "Art direction"] },
 ];
 
