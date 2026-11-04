@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { hasLearning, site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
 import { EASE_OUT } from "@/lib/motion";
@@ -25,6 +25,20 @@ export function Nav() {
   const loaded = useLoaded();
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const [current, setCurrent] = useState<string | null>(null);
+
+  // Underline the link for whichever section sits in the middle of the screen.
+  useEffect(() => {
+    const sections = LINKS.map((l) => document.querySelector<HTMLElement>(l.href)).filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setCurrent(`#${e.target.id}`);
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -40,7 +54,7 @@ export function Nav() {
         <nav aria-label="Primary" className="flex items-center gap-5 text-sm md:gap-10">
           <div className="hidden items-center gap-8 sm:flex md:gap-10">
             {LINKS.map((l) => (
-              <RollLink key={l.href} href={l.href}>
+              <RollLink key={l.href} href={l.href} active={current === l.href}>
                 {l.label}
               </RollLink>
             ))}

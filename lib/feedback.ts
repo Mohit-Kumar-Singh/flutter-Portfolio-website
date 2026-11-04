@@ -1,14 +1,19 @@
 // Tiny UI sounds (synthesised with Web Audio — no files to load) and haptic taps on phones.
 // Only ever triggered by a click or tap, never on page load. Visitors can mute sounds from the nav.
 
-export type Cue = "tap" | "toggle" | "open" | "close" | "success";
+export type Cue = "tap" | "toggle" | "dark" | "open" | "close" | "success";
 
 // [frequency Hz, start s, duration s]
 const TONES: Record<Cue, [number, number, number][]> = {
   tap: [[880, 0, 0.05]],
+  // Rising for light mode, falling for dark.
   toggle: [
     [660, 0, 0.06],
     [990, 0.05, 0.07],
+  ],
+  dark: [
+    [990, 0, 0.06],
+    [660, 0.05, 0.09],
   ],
   open: [
     [520, 0, 0.08],
@@ -29,6 +34,7 @@ const TONES: Record<Cue, [number, number, number][]> = {
 const HAPTICS: Record<Cue, number | number[]> = {
   tap: 8,
   toggle: 12,
+  dark: 12,
   open: 14,
   close: 10,
   success: [10, 50, 20],
@@ -86,5 +92,13 @@ export function feedback(cue: Cue) {
     try {
       play(cue);
     } catch {}
+  }
+}
+
+// Haptic only — for playful touches (like the car under the employer's name) where a sound would be too much.
+export function haptic(cue: Cue = "tap") {
+  if (typeof window === "undefined") return;
+  if (window.matchMedia("(pointer: coarse)").matches && navigator.userActivation?.hasBeenActive) {
+    navigator.vibrate?.(HAPTICS[cue]);
   }
 }

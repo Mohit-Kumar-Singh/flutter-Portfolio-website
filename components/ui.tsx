@@ -103,11 +103,15 @@ export function RollLink({
   children,
   className,
   external,
+  active,
+  onClick,
 }: {
   href: string;
   children: string;
   className?: string;
   external?: boolean;
+  active?: boolean;
+  onClick?: () => void;
 }) {
   return (
     // Vertical padding (cancelled by negative margin) gives a ~44px tap target without changing layout.
@@ -115,8 +119,10 @@ export function RollLink({
       href={href}
       className={`group -my-3 inline-flex py-3 ${className ?? ""}`}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+      aria-current={active ? "true" : undefined}
+      onClick={onClick}
     >
-      <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px]">
+      <span className={`bg-[linear-gradient(currentColor,currentColor)] ${active ? "bg-[length:100%_1px]" : "bg-[length:0%_1px]"} bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px]`}>
         {children}
       </span>
     </a>

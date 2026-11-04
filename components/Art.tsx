@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { art, artworks } from "@/lib/content";
 import { EASE_OUT, FADE_UP, SPRING_GENTLE } from "@/lib/motion";
+import { feedback } from "@/lib/feedback";
 import { TermText } from "./Term";
 import { Magnetic, RevealText } from "./ui";
 
@@ -25,6 +26,7 @@ export function Art() {
           <Magnetic strength={0.3} className="mt-8">
             <a
               href={art.instagram.href}
+              onClick={() => feedback("tap")}
               target="_blank"
               rel="noreferrer"
               className="press group relative block overflow-hidden rounded-full border border-ink/20 px-5 py-3 text-sm"

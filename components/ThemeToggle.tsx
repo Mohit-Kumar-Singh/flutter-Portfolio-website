@@ -26,8 +26,8 @@ export function ThemeToggle() {
   const dark = theme === "dark";
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    feedback("toggle");
     const next: Theme = dark ? "light" : "dark";
+    feedback(next === "dark" ? "dark" : "toggle");
     const apply = () => {
       document.documentElement.dataset.theme = next;
       try {

@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 // A tiny, consistent line-icon set in the site's own stroke — replaces colour emoji.
 // With `draw`, the strokes trace themselves in the first time the icon scrolls into view.
-export type IconName = "gear" | "loop" | "brush" | "cup" | "phone" | "chat" | "instagram" | "mail" | "arrow";
+export type IconName = "gear" | "loop" | "brush" | "cup" | "phone" | "chat" | "instagram" | "mail" | "arrow" | "car";
 
 const PATHS: Record<IconName, { d?: string[]; circles?: [number, number, number][]; rects?: [number, number, number, number, number][] }> = {
   gear: {
@@ -27,6 +27,13 @@ const PATHS: Record<IconName, { d?: string[]; circles?: [number, number, number]
   instagram: { rects: [[3.5, 3.5, 17, 17, 5]], circles: [[12, 12, 4]], d: ["M17.2 6.8h.01"] },
   mail: { rects: [[3, 5, 18, 14, 2.5]], d: ["M3.5 7l8.5 6 8.5-6"] },
   arrow: { d: ["M7 17L17 7", "M9 7h8v8"] },
+  car: {
+    d: ["M2.5 15.5v-2.8c0-.6.4-1.1 1-1.2l2.6-.5 2.4-3.2c.4-.5 1-.8 1.6-.8h4.6c.6 0 1.2.3 1.6.8l2.2 3 2.5.6c.6.1 1 .7 1 1.3v2.8", "M2.5 15.5h2.6", "M9 15.5h6", "M19 15.5h2.5", "M8 11h10"],
+    circles: [
+      [7, 15.8, 1.9],
+      [17, 15.8, 1.9],
+    ],
+  },
 };
 
 export function Icon({

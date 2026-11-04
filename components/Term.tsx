@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Fragment, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { terms } from "@/lib/content";
+import { feedback } from "@/lib/feedback";
 import { SPRING_SNAPPY } from "@/lib/motion";
 
 const useIsClient = () =>
@@ -62,7 +63,11 @@ export function Term({ word, children, decorative = false }: { word: string; chi
         onMouseLeave={() => setOpen(false)}
         onFocus={show}
         onBlur={() => setOpen(false)}
-        onClick={() => (open ? setOpen(false) : show())}
+        onClick={() => {
+          if (open) return setOpen(false);
+          feedback("tap");
+          show();
+        }}
         className="cursor-help underline decoration-current/40 decoration-dotted decoration-1 underline-offset-[0.18em] transition-[text-decoration-color] hover:decoration-current"
       >
         {children}

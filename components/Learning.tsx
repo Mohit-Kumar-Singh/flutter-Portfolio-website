@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { certifications, hasLearning, sideProjects } from "@/lib/content";
 import { EASE_OUT, FADE_UP, SPRING_GENTLE } from "@/lib/motion";
+import { feedback } from "@/lib/feedback";
 import { RevealText, RollLink } from "./ui";
 
 // Certificates (e.g. Udemy) and side projects. Renders nothing until lib/content.ts has an entry.
@@ -25,12 +26,12 @@ export function Learning() {
             {certifications.map((c, i) => (
               <motion.li
                 key={c.title}
-                className="relative grid grid-cols-1 items-center gap-4 border-t border-line py-6 sm:grid-cols-[1fr_auto] lg:grid-cols-[6rem_1fr_12rem_8rem]"
+                className="group relative grid grid-cols-1 items-center gap-4 border-t border-line py-6 sm:grid-cols-[1fr_auto] lg:grid-cols-[6rem_1fr_12rem_8rem]"
                 {...FADE_UP}
                 transition={{ ...SPRING_GENTLE, delay: i * 0.06 }}
               >
                 {c.image ? (
-                  <div className="relative hidden aspect-[4/3] overflow-hidden rounded-sm border border-line lg:block">
+                  <div className="relative hidden aspect-[4/3] overflow-hidden rounded-sm border border-line transition-transform duration-500 ease-out-expo group-hover:-translate-y-1 group-hover:-rotate-2 group-hover:scale-110 lg:block">
                     <Image src={c.image} alt={`${c.title} certificate`} fill sizes="6rem" className="object-cover" />
                   </div>
                 ) : (
@@ -42,7 +43,7 @@ export function Learning() {
                 </span>
                 {c.url ? (
                   <span className="text-sm lg:text-right">
-                    <RollLink href={c.url} external>
+                    <RollLink href={c.url} external onClick={() => feedback("tap")}>
                       View certificate ↗
                     </RollLink>
                   </span>

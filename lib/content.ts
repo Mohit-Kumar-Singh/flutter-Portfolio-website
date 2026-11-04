@@ -186,6 +186,20 @@ export const certifications: Certification[] = [
     url: "https://www.udemy.com/certificate/UC-1156cfcc-9f94-439a-b7cc-cf88e5095a32/",
     image: "/certificates/agentic-ai-crewai.jpg",
   },
+  {
+    title: "Claude Code: Building Faster with AI, from Prototype to Prod",
+    issuer: "Udemy",
+    date: "Jul 2026",
+    url: "https://www.udemy.com/certificate/UC-7b592a23-7209-4ddb-b850-47a9260b9f91/",
+    image: "/certificates/claude-code.jpg",
+  },
+  {
+    title: "DevOps, CI/CD (Continuous Integration/Delivery) for Beginners",
+    issuer: "Udemy",
+    date: "Mar 2025",
+    url: "https://www.udemy.com/certificate/UC-1d9a248e-806f-48c3-aaf9-e4086b3f36d2/",
+    image: "/certificates/devops-cicd.jpg",
+  },
 ];
 
 // One object per project. Links are optional.

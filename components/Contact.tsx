@@ -4,11 +4,13 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
+import { useScrollControls } from "./Experience";
 import { GetInTouch } from "./GetInTouch";
 import { Icon } from "./Icons";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
 export function Contact() {
+  const { scrollTo } = useScrollControls();
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -84,6 +86,16 @@ export function Contact() {
             </div>
           </div>
           <div>
+            <button
+              type="button"
+              onClick={() => {
+                feedback("tap");
+                scrollTo("#top");
+              }}
+              className="press mb-6 block text-xs text-paper/60 transition-colors hover:text-paper"
+            >
+              Back to top ↑
+            </button>
             <span className="mb-2 block text-xs text-paper/40">Socials</span>
             <div className="flex flex-wrap gap-6">
               {site.socials.map((s) => (
