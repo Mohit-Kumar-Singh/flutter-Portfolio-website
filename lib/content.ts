@@ -34,7 +34,6 @@ export const site = {
   stats: [
     { value: 3, suffix: "+", label: "Years at Volkswagen Group" },
     { value: 3, suffix: "+", label: "Years leading Team Footprints" },
-    { value: 1, label: "Café I ran" },
   ],
   socials: [
     { label: "GitHub", href: "https://github.com/Mohit-Kumar-Singh" },

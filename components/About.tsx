@@ -96,7 +96,7 @@ export function About() {
             ))}
           </p>
 
-          <dl className="mt-20 grid grid-cols-3 gap-6 border-y border-line py-8 md:gap-10">
+          <dl className="mt-20 grid grid-cols-2 gap-6 border-y border-line py-8 md:gap-10">
             {site.stats.map((st) => (
               <Stat key={st.label} {...st} />
             ))}
