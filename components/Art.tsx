@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { art, artworks } from "@/lib/content";
 import { EASE_OUT, FADE_UP, SPRING_GENTLE } from "@/lib/motion";
+import { TermText } from "./Term";
 import { Magnetic, RevealText } from "./ui";
 
 // The artist side: murals, the café, the fine-art society — plus a gallery once photos are added.
@@ -42,7 +43,9 @@ export function Art() {
               {...FADE_UP}
               transition={{ ...SPRING_GENTLE, delay: (i % 2) * 0.08 }}
             >
-              <h3 className="mb-2 text-2xl tracking-tight md:text-3xl">{h.title}</h3>
+              <h3 className="mb-2 text-2xl tracking-tight md:text-3xl">
+                <TermText text={h.title} />
+              </h3>
               <p className="max-w-sm leading-snug text-muted">{h.detail}</p>
             </motion.li>
           ))}

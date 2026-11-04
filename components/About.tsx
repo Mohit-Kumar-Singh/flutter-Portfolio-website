@@ -5,6 +5,7 @@ import { animate, motion, MotionValue, useInView, useMotionValue, useScroll, use
 import { useEffect, useRef } from "react";
 import { site } from "@/lib/content";
 import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
+import { Term, termFor } from "./Term";
 import { RevealText } from "./ui";
 
 function Word({ word, progress, range }: { word: string; progress: MotionValue<number>; range: [number, number] }) {
@@ -12,7 +13,7 @@ function Word({ word, progress, range }: { word: string; progress: MotionValue<n
   const opacity = useTransform(progress, range, [0.28, 1]);
   return (
     <motion.span style={{ opacity }} className="inline-block">
-      {word}&nbsp;
+      {termFor(word) ? <Term word={termFor(word)!}>{word}</Term> : word}&nbsp;
     </motion.span>
   );
 }

@@ -2,7 +2,9 @@
 
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { terms } from "@/lib/content";
 import { EASE_OUT, SPRING } from "@/lib/motion";
+import { Term, termFor } from "./Term";
 
 // Words slide up from behind a mask. Plays on scroll, or when `play` becomes true.
 export function RevealText({
@@ -19,6 +21,8 @@ export function RevealText({
   play?: boolean;
 }) {
   const words = text.split(" ");
+  // Glossary words (e.g. "Sanjhi") get a hover definition; screen readers hear it after the sentence.
+  const defined = [...new Set(words.map(termFor).filter((t): t is string => !!t))];
   // The trigger sits on the visible wrapper: the masked words themselves start fully clipped,
   // so an IntersectionObserver on them would never fire.
   const trigger =
@@ -29,7 +33,10 @@ export function RevealText({
   return (
     <motion.span className={className} initial="hidden" {...trigger}>
       {/* Screen readers get the plain sentence; the split, animated words are hidden from them. */}
-      <span className="sr-only">{text}</span>
+      <span className="sr-only">
+        {text}
+        {defined.map((t) => ` (${t}: ${terms[t]})`).join("")}
+      </span>
       {words.map((word, i) => (
         <span key={i} aria-hidden>
           {/* Padding (cancelled by negative margins) keeps descenders and italic overhang inside the mask. */}
@@ -39,7 +46,13 @@ export function RevealText({
               variants={{ hidden: { y: "110%" }, show: { y: "0%" } }}
               transition={{ duration: 0.9, ease: EASE_OUT, delay: delay + i * stagger }}
             >
-              {word}
+              {termFor(word) ? (
+                <Term word={termFor(word)!} decorative>
+                  {word}
+                </Term>
+              ) : (
+                word
+              )}
             </motion.span>
           </span>
           {i < words.length - 1 && " "}

@@ -19,8 +19,8 @@ const instrument = Instrument_Serif({
 });
 
 const name = `${site.firstName} ${site.lastName}`;
-const title = `${name} | ${site.role}, ${site.focus}`;
-const description = `${name} is a software developer at Volkswagen Group working on DevOps and automation, and an artist.`;
+const title = `${name} | ${site.role}`;
+const description = `${name} is a DevOps engineer at Volkswagen Group, and an artist who makes Sanjhi art and murals.`;
 
 // opengraph-image.tsx and icon.tsx are picked up automatically; metadataBase makes their URLs absolute.
 export const metadata: Metadata = {
