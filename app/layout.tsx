@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Instrument_Serif } from "next/font/google";
 import { site } from "@/lib/content";
+import { employer } from "@/lib/employer";
 import { themeScript } from "@/lib/theme";
 import "./globals.css";
 
@@ -20,7 +21,7 @@ const instrument = Instrument_Serif({
 
 const name = `${site.firstName} ${site.lastName}`;
 const title = `${name} | ${site.role}`;
-const description = `${name} is a DevOps engineer at Volkswagen Group, and an artist who makes Sanjhi art and murals.`;
+const description = `${name} is a DevOps engineer at ${employer.name}, and an artist who makes Sanjhi art and murals.`;
 
 // opengraph-image.tsx and icon.tsx are picked up automatically; metadataBase makes their URLs absolute.
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ const personJsonLd = {
   url: site.url,
   email: `mailto:${site.email}`,
   image: `${site.url}${site.portrait}`,
-  worksFor: { "@type": "Organization", name: site.company },
+  worksFor: { "@type": "Organization", name: employer.legalName },
   address: { "@type": "PostalAddress", addressLocality: "Delhi", addressCountry: "IN" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "AKGEC" },
   sameAs: site.socials.map((s) => s.href),

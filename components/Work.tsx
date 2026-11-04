@@ -6,6 +6,7 @@ import { projects, type Project } from "@/lib/content";
 import { EASE_OUT } from "@/lib/motion";
 import { Icon } from "./Icons";
 import { RevealText, RollLink } from "./ui";
+import { CompanyName } from "./CompanyName";
 
 const primaryLink = (p: Project) => p.live ?? p.code;
 
@@ -29,7 +30,7 @@ export function Work() {
             <span
               className={`inline-block transition-transform duration-700 ease-out-expo ${active === i ? "translate-x-4 font-serif italic lg:translate-x-8" : ""}`}
             >
-              {p.title}
+              {p.company ? <CompanyName /> : p.title}
             </span>
           );
           return (

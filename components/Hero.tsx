@@ -5,6 +5,7 @@ import { site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
 import { EASE_OUT } from "@/lib/motion";
 import { useLoaded } from "./Experience";
+import { CompanyName } from "./CompanyName";
 import { Icon } from "./Icons";
 import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 
@@ -46,7 +47,7 @@ export function Hero() {
           >
             <span className="mb-2 flex items-center gap-2 text-ink">
               <span className="size-2 rounded-full bg-accent" />
-              {site.status}
+              {site.role} at <CompanyName delay={1.1} />
             </span>
             <span className="flex flex-wrap gap-x-3">
               <span>

@@ -1,4 +1,5 @@
 import type { IconName } from "@/components/Icons";
+import { employer } from "@/lib/employer";
 
 // All site copy lives here — edit this file to make the portfolio yours.
 
@@ -6,9 +7,8 @@ export const site = {
   firstName: "Mohit",
   lastName: "Kumar Singh",
   role: "DevOps Engineer",
-  company: "Volkswagen Group Technology Solutions India",
-  // Short status shown with the pulsing dot in the hero.
-  status: "DevOps Engineer at Volkswagen Group",
+  // Short status shown with the dot in the hero and on the share banner. The company comes from lib/employer.ts.
+  status: `DevOps Engineer at ${employer.name}`,
   // What you focus on — shown under the status line, in the share image and the page title.
   focus: "DevOps & Automation",
   location: "Delhi, India",
@@ -22,9 +22,9 @@ export const site = {
   resume: "",
   portrait: "/images/portrait.jpg",
   intro:
-    "I'm a DevOps engineer at Volkswagen Group, automating build and release pipelines and helping teams improve how they work. I'm also an artist. I make Sanjhi art, paint murals, and I once ran a café.",
+    `I'm a DevOps engineer at ${employer.name}, automating build and release pipelines and helping teams improve how they work. I'm also an artist. I make Sanjhi art, paint murals, and I once ran a café.`,
   about:
-    "I studied Computer Science at AKGEC and spent three years running the college's fine-art society. Since 2023 I've been a DevOps engineer at Volkswagen Group. Outside work I still make art: Sanjhi, murals and drawings.",
+    `I studied Computer Science at AKGEC and spent three years running the college's fine-art society. Since ${employer.startYear} I've been a DevOps engineer at ${employer.name}. Outside work I still make art: Sanjhi, murals and drawings.`,
   education: [
     { title: "B.Tech, Computer Science", place: "AKGEC, Ghaziabad · 2019–2023" },
     { title: "Class XII, 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
@@ -81,13 +81,15 @@ export const skills: { group: string; items: string[] }[] = [
   { group: "Art", items: ["Wall murals", "Painting", "Sanjhi art", "Art direction"] },
 ];
 
-export const timeline: { year: string; items: { title: string; detail: string }[] }[] = [
+// `company: true` appends the animated employer name to the title.
+export const timeline: { year: string; items: { title: string; detail: string; company?: boolean }[] }[] = [
   {
-    year: "2023",
+    year: employer.startYear,
     items: [
       {
-        title: "DevOps Engineer · Volkswagen Group",
-        detail: "DevOps engineer at Volkswagen Group Technology Solutions India, Gurugram, since August 2023. I automate pipelines and help teams with their processes.",
+        title: "DevOps Engineer",
+        company: true,
+        detail: `DevOps engineer at ${employer.legalName}, ${employer.city}, since ${employer.since}. I automate pipelines and help teams with their processes.`,
       },
       { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: an app that detects malicious URLs." },
     ],
@@ -119,6 +121,8 @@ export type Project = {
   description: string;
   year: string;
   stack: string[];
+  // Shows the title as the animated employer name (see lib/employer.ts).
+  company?: boolean;
   // Optional links; `live` is preferred as the primary link. Items with neither are not clickable.
   live?: string;
   code?: string;
@@ -126,12 +130,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Volkswagen Group",
+    title: employer.name,
+    company: true,
     category: "DevOps Engineer · Full-time",
     icon: "gear",
     description:
       "I automate build and release pipelines and the repetitive work around them, and help other teams streamline their processes so they ship faster.",
-    year: "2023–now",
+    year: employer.period,
     stack: ["DevOps", "CI/CD", "Automation", "Process improvement"],
   },
   {
@@ -151,3 +156,20 @@ export const projects: Project[] = [
     stack: ["Business", "Operations", "Interior art"],
   },
 ];
+
+// ── Certifications & side projects ───────────────────────────────────────────────
+// The section (and its nav link) stays hidden until one of these lists has an item.
+
+// One object per certificate. `image` is optional: drop the file in public/certificates/.
+// Example: { title: "Docker & Kubernetes: The Practical Guide", issuer: "Udemy", date: "Mar 2026",
+//            url: "https://www.udemy.com/certificate/UC-xxxx/", image: "/certificates/docker.jpg" }
+export type Certification = { title: string; issuer: string; date: string; url?: string; image?: string };
+export const certifications: Certification[] = [];
+
+// One object per project. Links are optional.
+// Example: { title: "Release bot", description: "Posts deploy status to Teams.", tags: ["Python", "CI/CD"],
+//            code: "https://github.com/Mohit-Kumar-Singh/release-bot" }
+export type SideProject = { title: string; description: string; tags: string[]; live?: string; code?: string };
+export const sideProjects: SideProject[] = [];
+
+export const hasLearning = certifications.length > 0 || sideProjects.length > 0;

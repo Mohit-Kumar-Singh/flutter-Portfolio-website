@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { timeline } from "@/lib/content";
 import { FADE_UP, SPRING_GENTLE } from "@/lib/motion";
 import { RevealText } from "./ui";
+import { CompanyName } from "./CompanyName";
 
 // Year-by-year timeline; the vertical rule draws itself as you scroll through it.
 export function Journey() {
@@ -48,7 +49,15 @@ export function Journey() {
                     {...FADE_UP}
                     transition={{ ...SPRING_GENTLE, delay: 0.08 + i * 0.08 }}
                   >
-                    <h3 className="mb-2 text-xl tracking-tight">{item.title}</h3>
+                    <h3 className="mb-2 text-xl tracking-tight">
+                      {item.title}
+                      {item.company && (
+                        <>
+                          {" · "}
+                          <CompanyName />
+                        </>
+                      )}
+                    </h3>
                     <p className="max-w-sm leading-snug text-muted">{item.detail}</p>
                   </motion.div>
                 ))}

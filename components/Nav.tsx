@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { useCallback, useState } from "react";
-import { site } from "@/lib/content";
+import { hasLearning, site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
 import { EASE_OUT } from "@/lib/motion";
 import { useLoaded } from "./Experience";
@@ -11,10 +11,12 @@ import { SoundToggle } from "./SoundToggle";
 import { ThemeToggle } from "./ThemeToggle";
 import { RollLink } from "./ui";
 
+// "Learning" only appears once there's a certificate or project to show.
 const LINKS: NavLink[] = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Art", href: "#art" },
+  ...(hasLearning ? [{ label: "Learning", href: "#learning" }] : []),
   { label: "Experience", href: "#journey" },
   { label: "Contact", href: "#contact" },
 ];
