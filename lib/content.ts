@@ -50,7 +50,7 @@ export const art = {
   intro:
     "I've made art since school. Most of it is Sanjhi, cut by hand with a surgical blade.",
   highlights: [
-    { title: "Freelance wall murals", detail: "Murals painted for clients as a freelancer." },
+    { title: "Freelance wall murals", detail: "Painted the walls of Fittverse gym in Indirapuram, Ghaziabad." },
     { title: "Expect-o-cafeteria", detail: "Ran my own café, Expect-o-cafeteria, with Avinash Rai." },
     { title: "Team Footprints", detail: "Artist and head of operations at AKGEC's fine-art society for over three years." },
     { title: "Sanjhi art", detail: "Cut by hand with a surgical blade. One piece takes 5 to 14 hours." },
@@ -59,7 +59,13 @@ export const art = {
 
 // Drop artwork photos into public/art/ and list them here — the gallery in the Art section appears automatically.
 // Pieces from @kalakari_by_mks.
-export const artworks: { src: string; title: string; detail?: string }[] = [
+export const artworks: { src: string; title: string; detail?: string; landscape?: boolean }[] = [
+  // Wall murals at Fittverse gym, Indirapuram (from the @kalakari_by_mks post).
+  { src: "/art/mural-spin-room.jpg", title: "Spin Room", detail: "Wall mural · Fittverse gym", landscape: true },
+  { src: "/art/mural-goggins-wall.jpg", title: "Goggins Wall", detail: "Wall mural · Fittverse gym", landscape: true },
+  { src: "/art/mural-rope-climb.jpg", title: "Rope Climb", detail: "Wall mural · Fittverse gym", landscape: true },
+  { src: "/art/mural-cyclist.jpg", title: "The Cyclist", detail: "Wall mural · Fittverse gym", landscape: true },
+  { src: "/art/mural-dumbbell.jpg", title: "Dumbbell", detail: "Wall mural · Fittverse gym", landscape: true },
   { src: "/art/under-the-wolfs-skin.jpg", title: "Under the Wolf's Skin", detail: "Sanjhi · surgical blade · ~6 hrs" },
   { src: "/art/point-of-view-neon.jpg", title: "Point of View", detail: "Neon tubes & acrylic · ~9 hrs" },
   { src: "/art/voyages-unknown.jpg", title: "Voyages Unknown", detail: "Sanjhi · ~5 hrs" },
@@ -123,8 +129,8 @@ export type Project = {
   stack: string[];
   // Shows the title as the animated employer name (see lib/employer.ts).
   company?: boolean;
-  // Someone you did it with, credited (and linked) under the description.
-  partner?: { name: string; href: string };
+  // A linked credit under the description: "With" a partner or "For" a client.
+  credit?: { label: "With" | "For"; name: string; href: string };
   // Optional links; `live` is preferred as the primary link. Items with neither are not clickable.
   live?: string;
   code?: string;
@@ -143,18 +149,19 @@ export const projects: Project[] = [
   },
   {
     title: "Wall Murals",
-    category: "Freelance artist",
+    category: "Freelance · Wall murals",
     icon: "brush",
-    description: "Wall murals painted for clients, from sketch to finished wall.",
+    description: "Murals for a gym in Indirapuram, Ghaziabad: athletes in motion and a David Goggins quote wall, from sketch to finished wall.",
+    credit: { label: "For", name: "Fittverse", href: "https://www.instagram.com/fittversebyps/" },
     year: "",
-    stack: ["Murals", "Painting", "Client work"],
+    stack: ["Murals", "Painting", "Gym interiors"],
   },
   {
     title: "Expect-o-cafeteria",
     category: "Café · Co-run",
     icon: "cup",
     description: "A café I ran with a partner: the menu, the people and the suppliers.",
-    partner: { name: "Avinash Rai", href: "https://www.linkedin.com/in/avinash-rai-23415a160/" },
+    credit: { label: "With", name: "Avinash Rai", href: "https://www.linkedin.com/in/avinash-rai-23415a160/" },
     year: "",
     stack: ["Business", "Operations"],
   },

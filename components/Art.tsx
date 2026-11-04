@@ -66,7 +66,8 @@ export function Art() {
             {[0, 1].map((copy) => (
               <ul key={copy} className="flex shrink-0 gap-4 md:gap-6" aria-hidden={copy === 1 || undefined}>
                 {artworks.map((a) => (
-                  <li key={a.src} className="w-44 shrink-0 md:w-64">
+                  // Landscape pieces (the murals) keep the same height as portrait ones, so the row stays even.
+                  <li key={a.src} className={`shrink-0 ${a.landscape ? "w-[18.33rem] md:w-[26.67rem]" : "w-44 md:w-64"}`}>
                     <a
                       href={art.instagram.href}
                       target="_blank"
@@ -75,12 +76,12 @@ export function Art() {
 
                       className="group block"
                     >
-                      <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+                      <div className={`relative overflow-hidden rounded-sm ${a.landscape ? "aspect-[4/3]" : "aspect-[4/5]"}`}>
                         <Image
                           src={a.src}
                           alt={copy === 1 ? "" : `${a.title}, artwork by Mohit Kumar Singh`}
                           fill
-                          sizes="(min-width: 768px) 16rem, 11rem"
+                          sizes={a.landscape ? "(min-width: 768px) 27rem, 19rem" : "(min-width: 768px) 16rem, 11rem"}
                           className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
                         />
                       </div>

@@ -66,11 +66,11 @@ export function Work() {
                   <Icon name={p.icon} draw className="icon-wiggle mr-2 -mt-0.5 align-middle text-base" />
                   {p.category}
                   <p className="mt-1 max-w-xs text-muted">{p.description}</p>
-                  {p.partner && (
+                  {p.credit && (
                     <p className="relative z-10 mt-2 text-muted">
-                      With{" "}
-                      <RollLink href={p.partner.href} external className="text-ink">
-                        {`${p.partner.name} ↗`}
+                      {p.credit.label}{" "}
+                      <RollLink href={p.credit.href} external className="text-ink">
+                        {`${p.credit.name} ↗`}
                       </RollLink>
                     </p>
                   )}
