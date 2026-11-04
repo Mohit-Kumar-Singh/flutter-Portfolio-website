@@ -50,7 +50,18 @@ export function Journey() {
                     transition={{ ...SPRING_GENTLE, delay: 0.08 + i * 0.08 }}
                   >
                     <h3 className="mb-2 text-xl tracking-tight">
-                      {item.title}
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="underline decoration-current/30 decoration-1 underline-offset-[0.18em] transition-[text-decoration-color] hover:decoration-current"
+                        >
+                          {item.title} ↗
+                        </a>
+                      ) : (
+                        item.title
+                      )}
                       {item.company && (
                         <>
                           {" · "}

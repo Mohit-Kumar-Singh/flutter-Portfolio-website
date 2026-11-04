@@ -44,7 +44,18 @@ export function Art() {
               transition={{ ...SPRING_GENTLE, delay: (i % 2) * 0.08 }}
             >
               <h3 className="mb-2 text-2xl tracking-tight md:text-3xl">
-                <TermText text={h.title} />
+                {"href" in h && h.href ? (
+                  <a href={h.href} target="_blank" rel="noreferrer" className="group inline-flex items-baseline gap-2">
+                    <span className="underline decoration-current/30 decoration-1 underline-offset-[0.18em] transition-[text-decoration-color] group-hover:decoration-current">
+                      {h.title}
+                    </span>
+                    <span className="text-base text-muted transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                      ↗
+                    </span>
+                  </a>
+                ) : (
+                  <TermText text={h.title} />
+                )}
               </h3>
               <p className="max-w-sm leading-snug text-muted">{h.detail}</p>
             </motion.li>

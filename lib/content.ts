@@ -49,10 +49,11 @@ export const art = {
   instagram: { handle: "@kalakari_by_mks", href: "https://instagram.com/kalakari_by_mks" },
   intro:
     "I've made art since school. Most of it is Sanjhi, cut by hand with a surgical blade.",
+  // `href` turns a highlight title into a link.
   highlights: [
     { title: "Freelance wall murals", detail: "Painted the walls of Fittverse gym in Indirapuram, Ghaziabad." },
     { title: "Expecto Cafeteria", detail: "Co-ran a rooftop café in Crossings Republik, Ghaziabad, with Avinash Rai." },
-    { title: "Team Footprints", detail: "Artist and head of operations at AKGEC's fine-art society for over three years." },
+    { title: "Team Footprints", href: "https://www.instagram.com/kaleidoscope.fp/", detail: "Artist and head of operations at AKGEC's fine-art society for over three years." },
     { title: "Sanjhi art", detail: "Cut by hand with a surgical blade. One piece takes 5 to 14 hours." },
   ],
 };
@@ -88,7 +89,8 @@ export const skills: { group: string; items: string[] }[] = [
 ];
 
 // `company: true` appends the animated employer name to the title.
-export const timeline: { year: string; items: { title: string; detail: string; company?: boolean }[] }[] = [
+// `href` turns the title into a link.
+export const timeline: { year: string; items: { title: string; detail: string; company?: boolean; href?: string }[] }[] = [
   {
     year: employer.startYear,
     items: [
@@ -97,7 +99,7 @@ export const timeline: { year: string; items: { title: string; detail: string; c
         company: true,
         detail: `DevOps engineer at ${employer.legalName}, ${employer.city}, since ${employer.since}. I automate pipelines and help teams with their processes.`,
       },
-      { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: an app that detects malicious URLs." },
+      { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: a malicious URL detector built with machine learning." },
       { title: "Co-ran Expecto Cafeteria", detail: "Rooftop café in Crossings Republik, Ghaziabad, with Avinash Rai, until 2025." },
     ],
   },
@@ -106,6 +108,7 @@ export const timeline: { year: string; items: { title: string; detail: string; c
     items: [
       {
         title: "Team Head · Team Footprints",
+        href: "https://www.instagram.com/kaleidoscope.fp/",
         detail: "Artist and head of operations at AKGEC's fine-art society. We ran blood donation camps, anti-ragging drives and Azadi Ka Amrit Mahotsav events.",
       },
     ],
