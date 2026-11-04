@@ -22,9 +22,9 @@ export const site = {
   resume: "",
   portrait: "/images/portrait.jpg",
   intro:
-    `I'm a DevOps engineer at ${employer.name}, automating build and release pipelines and helping teams improve how they work. I'm also an artist. I make Sanjhi art, paint murals, and I once ran a café, Expect-o-cafeteria.`,
+    `I'm a DevOps engineer at ${employer.name}, automating build and release pipelines and helping teams improve how they work. I'm also an artist. I make Sanjhi art, paint murals, and I once ran a café, Expecto Cafeteria.`,
   about:
-    `I studied Computer Science at AKGEC and spent three years running the college's fine-art society. Since ${employer.startYear} I've been a DevOps engineer at ${employer.name}. Outside work I still make art: Sanjhi, murals and drawings.`,
+    `I studied Computer Science at AKGEC and led the college's fine-art society. After that I co-ran a café. Both sharpened my people and management skills. Since ${employer.startYear} I've been a DevOps engineer at ${employer.name}, and outside work I still make art: Sanjhi, murals and drawings.`,
   education: [
     { title: "B.Tech, Computer Science", place: "AKGEC, Ghaziabad · 2019–2023" },
     { title: "Class XII, 93.2% (PCM)", place: "Bloomingdale School, Badaun · 2018" },
@@ -51,7 +51,7 @@ export const art = {
     "I've made art since school. Most of it is Sanjhi, cut by hand with a surgical blade.",
   highlights: [
     { title: "Freelance wall murals", detail: "Painted the walls of Fittverse gym in Indirapuram, Ghaziabad." },
-    { title: "Expect-o-cafeteria", detail: "Ran my own café, Expect-o-cafeteria, with Avinash Rai." },
+    { title: "Expecto Cafeteria", detail: "Co-ran a rooftop café in Crossings Republik, Ghaziabad, with Avinash Rai." },
     { title: "Team Footprints", detail: "Artist and head of operations at AKGEC's fine-art society for over three years." },
     { title: "Sanjhi art", detail: "Cut by hand with a surgical blade. One piece takes 5 to 14 hours." },
   ],
@@ -157,13 +157,13 @@ export const projects: Project[] = [
     stack: ["Murals", "Painting", "Gym interiors"],
   },
   {
-    title: "Expect-o-cafeteria",
-    category: "Café · Co-run",
+    title: "Expecto Cafeteria",
+    category: "Rooftop café · Crossings Republik, Ghaziabad",
     icon: "cup",
-    description: "A café I ran with a partner: the menu, the people and the suppliers.",
+    description: "Co-ran the café. I handled operations, staff, interiors, parties, customers and online delivery.",
     credit: { label: "With", name: "Avinash Rai", href: "https://www.linkedin.com/in/avinash-rai-23415a160/" },
     year: "",
-    stack: ["Business", "Operations"],
+    stack: ["Operations", "Staff management", "Interiors", "Events", "Online delivery"],
   },
 ];
 
