@@ -98,6 +98,7 @@ export const timeline: { year: string; items: { title: string; detail: string; c
         detail: `DevOps engineer at ${employer.legalName}, ${employer.city}, since ${employer.since}. I automate pipelines and help teams with their processes.`,
       },
       { title: "Graduated · B.Tech CSE", detail: "AKGEC, Ghaziabad. Final-year project: an app that detects malicious URLs." },
+      { title: "Co-ran Expecto Cafeteria", detail: "Rooftop café in Crossings Republik, Ghaziabad, with Avinash Rai, until 2025." },
     ],
   },
   {
@@ -162,7 +163,7 @@ export const projects: Project[] = [
     icon: "cup",
     description: "Co-ran the café. I handled operations, staff, interiors, parties, customers and online delivery.",
     credit: { label: "With", name: "Avinash Rai", href: "https://www.linkedin.com/in/avinash-rai-23415a160/" },
-    year: "",
+    year: "2023–2025",
     stack: ["Operations", "Staff management", "Interiors", "Events", "Online delivery"],
   },
 ];
