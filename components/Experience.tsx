@@ -3,7 +3,6 @@
 import Lenis from "lenis";
 import { MotionConfig } from "motion/react";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { initAmbient } from "@/lib/ambient";
 import { Backdrop } from "./Backdrop";
 
 const LoadedContext = createContext(false);
@@ -46,10 +45,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
     }
     // Start the hero entrance on the next frame, once the page has painted.
     const id = requestAnimationFrame(() => setLoaded(true));
-    // Calm, quiet background music (starts on load, or on the first click/tap if the browser blocks it).
-    const stopAmbient = initAmbient();
     return () => {
-      stopAmbient();
       cancelAnimationFrame(id);
       lenis.current?.destroy();
       lenis.current = null;

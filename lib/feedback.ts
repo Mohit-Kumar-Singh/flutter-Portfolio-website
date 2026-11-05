@@ -44,12 +44,6 @@ const KEY = "sound";
 const listeners = new Set<() => void>();
 let ctx: AudioContext | null = null;
 
-// One AudioContext for the whole site (UI sounds and the ambient music share it).
-export function audioContext() {
-  ctx ??= new AudioContext();
-  return ctx;
-}
-
 export function isSoundOn() {
   try {
     return localStorage.getItem(KEY) !== "off";
@@ -71,8 +65,7 @@ export function subscribeSound(listener: () => void) {
 }
 
 function play(cue: Cue) {
-  const ctx = audioContext();
-  if (ctx.state === "suspended") ctx.resume();
+  ctx ??= new AudioContext();
   const now = ctx.currentTime;
   for (const [freq, start, dur] of TONES[cue]) {
     const osc = ctx.createOscillator();
