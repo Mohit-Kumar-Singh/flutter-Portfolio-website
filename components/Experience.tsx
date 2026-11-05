@@ -46,7 +46,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
     }
     // Start the hero entrance on the next frame, once the page has painted.
     const id = requestAnimationFrame(() => setLoaded(true));
-    // Calm background music that plays while scrolling (after the first click or tap).
+    // Calm, quiet background music (starts on load, or on the first click/tap if the browser blocks it).
     const stopAmbient = initAmbient();
     return () => {
       stopAmbient();

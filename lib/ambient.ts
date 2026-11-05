@@ -1,8 +1,9 @@
 import { audioContext, isSoundOn, subscribeSound } from "@/lib/feedback";
 
-// A soft, slowly changing chord pad that swells while the visitor scrolls and fades away when they stop.
-// Synthesised with Web Audio (no files to load). Browsers only allow audio after a click, tap or key
-// press, so nothing plays until the visitor has interacted once. The nav's sound toggle mutes it.
+// A soft, slowly changing chord pad that plays quietly in the background for as long as the page is open.
+// Synthesised with Web Audio (no files to load). It tries to start as soon as the page loads; browsers
+// usually block sound until the visitor's first click, tap or key press, so it starts then instead.
+// The nav's sound toggle mutes it, and it fades out while the tab is in the background.
 
 // Voice-led chords, each four notes (Hz): Fmaj7 → Em7 → Dm9 → Cadd9.
 const CHORDS = [
@@ -12,12 +13,9 @@ const CHORDS = [
   [130.81, 196.0, 293.66, 329.63],
 ];
 const CHORD_SECONDS = 9;
-// Overall loudness while scrolling — kept well under the UI sounds.
-const QUIET = 0.03;
-const LOUD = 0.055;
-const IDLE_MS = 1400;
-// After this long with nothing playing, the audio clock is paused to save battery.
-const SLEEP_MS = 8000;
+// Overall loudness — low, kept under the UI sounds.
+const VOLUME = 0.035;
+const FADE_IN = 4;
 
 type Pad = { master: GainNode; oscs: OscillatorNode[][] };
 
@@ -80,84 +78,58 @@ function buildPad(ctx: AudioContext): Pad {
 export function initAmbient() {
   let pad: Pad | null = null;
   let chord = 0;
-  let lastY = window.scrollY;
-  let lastT = performance.now();
-  let idleTimer = 0;
-  let sleepTimer = 0;
   let chordTimer = 0;
-
-  const ctx = () => audioContext();
+  const ctx = audioContext();
 
   const glideTo = (index: number) => {
     if (!pad) return;
-    const now = ctx().currentTime;
+    const now = ctx.currentTime;
     CHORDS[index].forEach((freq, v) => pad!.oscs[v].forEach((o) => o.frequency.setTargetAtTime(freq, now, 1.5)));
   };
 
-  const fadeOut = (seconds = 1.2) => {
+  const setLevel = (level: number, seconds: number) => {
     if (!pad) return;
-    const c = ctx();
-    pad.master.gain.cancelScheduledValues(c.currentTime);
-    pad.master.gain.setTargetAtTime(0, c.currentTime, seconds / 3);
+    pad.master.gain.cancelScheduledValues(ctx.currentTime);
+    pad.master.gain.setTargetAtTime(level, ctx.currentTime, seconds / 3);
+  };
+
+  const play = () => {
+    if (!isSoundOn() || document.hidden) return;
+    pad ??= buildPad(ctx);
+    if (ctx.state === "suspended") ctx.resume();
+    setLevel(VOLUME, FADE_IN);
+    chordTimer ||= window.setInterval(() => {
+      chord = (chord + 1) % CHORDS.length;
+      glideTo(chord);
+    }, CHORD_SECONDS * 1000);
+  };
+
+  const stop = () => {
+    setLevel(0, 0.6);
     window.clearInterval(chordTimer);
     chordTimer = 0;
-    window.clearTimeout(sleepTimer);
-    sleepTimer = window.setTimeout(() => {
-      if (ctx().state === "running") ctx().suspend();
-    }, SLEEP_MS);
   };
 
-  // Browsers need a real interaction before audio can start; build the pad on the first one.
-  const unlock = () => {
-    if (!isSoundOn()) return;
-    const c = ctx();
-    if (c.state === "suspended") c.resume();
-    pad ??= buildPad(c);
+  // Once the audio is actually running, the first-interaction listeners are no longer needed.
+  const onInteract = () => {
+    play();
+    if (ctx.state === "running" || !isSoundOn()) removeUnlock();
   };
+  const unlockEvents = ["pointerdown", "keydown", "touchend"] as const;
+  const removeUnlock = () => unlockEvents.forEach((e) => window.removeEventListener(e, onInteract));
+  unlockEvents.forEach((e) => window.addEventListener(e, onInteract, { passive: true }));
 
-  const onScroll = () => {
-    const t = performance.now();
-    const speed = Math.abs(window.scrollY - lastY) / Math.max(t - lastT, 1); // px per ms
-    lastY = window.scrollY;
-    lastT = t;
-    if (!pad || !isSoundOn() || document.hidden) return;
-
-    const c = ctx();
-    window.clearTimeout(sleepTimer);
-    if (c.state === "suspended") c.resume();
-
-    const level = QUIET + (LOUD - QUIET) * Math.min(1, speed / 3);
-    pad.master.gain.cancelScheduledValues(c.currentTime);
-    pad.master.gain.setTargetAtTime(level, c.currentTime, 0.4);
-
-    if (!chordTimer) {
-      chordTimer = window.setInterval(() => {
-        chord = (chord + 1) % CHORDS.length;
-        glideTo(chord);
-      }, CHORD_SECONDS * 1000);
-    }
-
-    window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(() => fadeOut(), IDLE_MS);
-  };
-
-  const onVisibility = () => document.hidden && fadeOut(0.3);
-  const unsubscribe = subscribeSound(() => !isSoundOn() && fadeOut(0.3));
-
-  const opts = { passive: true } as const;
-  window.addEventListener("pointerdown", unlock, opts);
-  window.addEventListener("keydown", unlock, opts);
-  window.addEventListener("scroll", onScroll, opts);
+  const onVisibility = () => (document.hidden ? stop() : play());
+  const unsubscribe = subscribeSound(() => (isSoundOn() ? play() : stop()));
   document.addEventListener("visibilitychange", onVisibility);
 
+  // Try right away — works where the browser already allows sound for this site.
+  play();
+
   return () => {
-    window.removeEventListener("pointerdown", unlock);
-    window.removeEventListener("keydown", unlock);
-    window.removeEventListener("scroll", onScroll);
+    removeUnlock();
     document.removeEventListener("visibilitychange", onVisibility);
     unsubscribe();
-    window.clearTimeout(idleTimer);
-    window.clearTimeout(sleepTimer);
     window.clearInterval(chordTimer);
     if (pad) {
       pad.master.disconnect();
