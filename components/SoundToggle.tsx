@@ -12,7 +12,7 @@ export function SoundToggle() {
     <button
       type="button"
       aria-pressed={on}
-      aria-label={on ? "Mute interface sounds" : "Turn interface sounds on"}
+      aria-label={on ? "Mute sounds and music" : "Turn sounds and music on"}
       onClick={() => {
         setSoundOn(!on);
         if (!on) feedback("toggle");
