@@ -91,10 +91,7 @@ function play(cue: Cue) {
 
 export function feedback(cue: Cue) {
   if (typeof window === "undefined") return;
-  // Browsers block vibration until the visitor has tapped the page at least once.
-  if (window.matchMedia("(pointer: coarse)").matches && navigator.userActivation?.hasBeenActive) {
-    navigator.vibrate?.(HAPTICS[cue]);
-  }
+  haptic(cue);
   if (isSoundOn()) {
     try {
       play(cue);
@@ -105,6 +102,7 @@ export function feedback(cue: Cue) {
 // Haptic only — for playful touches (like the car under the employer's name) where a sound would be too much.
 export function haptic(cue: Cue = "tap") {
   if (typeof window === "undefined") return;
+  // Browsers block vibration until the visitor has tapped the page at least once.
   if (window.matchMedia("(pointer: coarse)").matches && navigator.userActivation?.hasBeenActive) {
     navigator.vibrate?.(HAPTICS[cue]);
   }

@@ -9,11 +9,8 @@ export const site = {
   role: "DevOps Engineer",
   // Short status shown with the dot in the hero and on the share banner. The company comes from lib/employer.ts.
   status: `DevOps Engineer at ${employer.name}`,
-  // What you focus on — shown under the status line, in the share image and the page title.
-  focus: "DevOps & Automation",
   location: "Delhi, India",
   timeZone: "Asia/Kolkata",
-  year: "2026",
   updated: "Nov 2026",
   url: "https://mohit-portfolio-five-tau.vercel.app",
   email: "mks61201625@gmail.com",

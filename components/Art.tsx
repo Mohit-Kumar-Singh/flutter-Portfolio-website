@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { art, artworks } from "@/lib/content";
+import { art, artworks, site } from "@/lib/content";
 import { EASE_OUT, FADE_UP, SPRING_GENTLE } from "@/lib/motion";
 import { feedback } from "@/lib/feedback";
 import { TermText } from "./Term";
@@ -86,13 +86,12 @@ export function Art() {
                       target="_blank"
                       rel="noreferrer"
                       tabIndex={copy === 1 ? -1 : undefined}
-
                       className="group block"
                     >
                       <div className={`relative overflow-hidden rounded-sm ${a.landscape ? "aspect-[4/3]" : "aspect-[4/5]"}`}>
                         <Image
                           src={a.src}
-                          alt={copy === 1 ? "" : `${a.title}, artwork by Mohit Kumar Singh`}
+                          alt={copy === 1 ? "" : `${a.title}, artwork by ${site.firstName} ${site.lastName}`}
                           fill
                           sizes={a.landscape ? "(min-width: 768px) 27rem, 19rem" : "(min-width: 768px) 16rem, 11rem"}
                           className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"

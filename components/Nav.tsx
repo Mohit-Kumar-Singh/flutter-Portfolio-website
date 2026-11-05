@@ -29,7 +29,7 @@ export function Nav() {
 
   // Underline the link for whichever section sits in the middle of the screen.
   useEffect(() => {
-    const sections = LINKS.map((l) => document.querySelector<HTMLElement>(l.href)).filter(Boolean) as HTMLElement[];
+    const sections = LINKS.map((l) => document.querySelector<HTMLElement>(l.href)).filter((s): s is HTMLElement => s !== null);
     const observer = new IntersectionObserver(
       (entries) => {
         for (const e of entries) if (e.isIntersecting) setCurrent(`#${e.target.id}`);

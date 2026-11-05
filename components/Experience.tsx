@@ -55,7 +55,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
       lenis.current = null;
       document.documentElement.style.overflow = "";
     };
-  }, [setScrollLocked]);
+  }, []);
 
   return (
     <MotionConfig reducedMotion="user">

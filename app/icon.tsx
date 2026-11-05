@@ -6,8 +6,10 @@ import { ImageResponse } from "next/og";
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-export default async function Icon() {
-  const serif = await readFile(join(process.cwd(), "assets/InstrumentSerif-Italic.ttf"));
+// Read once at module level, so the icon is generated at build time instead of on every request.
+const serif = await readFile(join(process.cwd(), "assets/InstrumentSerif-Italic.ttf"));
+
+export default function Icon() {
   return new ImageResponse(
     (
       <div

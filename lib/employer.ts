@@ -14,7 +14,7 @@ type EmployerInit = {
   motif: Motif;
 };
 
-export class Employer {
+class Employer {
   readonly name: string;
   readonly legalName: string;
   readonly city: string;

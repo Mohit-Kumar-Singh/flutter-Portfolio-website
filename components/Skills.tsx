@@ -24,9 +24,7 @@ export function Skills() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: EASE_OUT, delay: gi * 0.1 }}
             />
-            <h3 className="mb-5 flex justify-between text-sm text-muted">
-              <span>{g.group}</span>
-            </h3>
+            <h3 className="mb-5 text-sm text-muted">{g.group}</h3>
             <p className="text-lg leading-snug sm:hidden">{g.items.join(" · ")}</p>
             <motion.ul
               className="hidden flex-wrap gap-2 sm:flex"

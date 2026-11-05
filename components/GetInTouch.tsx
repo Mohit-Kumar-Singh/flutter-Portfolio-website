@@ -7,7 +7,7 @@ import { feedback } from "@/lib/feedback";
 import { SPRING_GENTLE } from "@/lib/motion";
 import { Icon, type IconName } from "./Icons";
 
-const greeting = encodeURIComponent("Hi Mohit, I saw your portfolio and would love to connect.");
+const greeting = encodeURIComponent(`Hi ${site.firstName}, I saw your portfolio and would love to connect.`);
 
 const CHANNELS: { icon: IconName; label: string; detail: string; href: string }[] = [
   {
@@ -28,17 +28,32 @@ export function GetInTouch() {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const firstLink = useRef<HTMLAnchorElement>(null);
+  // Set when the card is closed from the keyboard or its × button, so focus lands back on the circle
+  // instead of being dropped to <body> when the focused link unmounts.
+  const restoreFocus = useRef(false);
 
   const toggle = (next: boolean) => {
     feedback(next ? "open" : "close");
+    restoreFocus.current = !next;
     setOpen(next);
   };
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      // A ref on the pill would be swallowed by AnimatePresence's popLayout wrapper, so look it up instead.
+      if (restoreFocus.current) {
+        root.current?.querySelector<HTMLButtonElement>("[aria-controls='contact-options']")?.focus({ preventScroll: true });
+      }
+      restoreFocus.current = false;
+      return;
+    }
     firstLink.current?.focus({ preventScroll: true });
     const onDown = (e: PointerEvent) => !root.current?.contains(e.target as Node) && setOpen(false);
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      restoreFocus.current = true;
+      setOpen(false);
+    };
     window.addEventListener("pointerdown", onDown);
     window.addEventListener("keydown", onKey);
     return () => {

@@ -17,6 +17,8 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
 
   useEffect(() => {
     if (!open) return;
+    // Hand focus back to whatever opened the menu (the Menu button) once it closes.
+    const opener = document.activeElement as HTMLElement | null;
     setLocked(true);
     firstLink.current?.focus();
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -24,6 +26,7 @@ export function MobileMenu({ open, onClose, links }: { open: boolean; onClose: (
     return () => {
       setLocked(false);
       window.removeEventListener("keydown", onKey);
+      opener?.focus({ preventScroll: true });
     };
   }, [open, onClose, setLocked]);
 

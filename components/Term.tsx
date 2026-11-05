@@ -14,10 +14,13 @@ const useIsClient = () =>
     () => false,
   );
 
+// Own keys only, so words like "constructor" never pick up Object.prototype members.
+const define = (word: string) => (Object.hasOwn(terms, word) ? terms[word] : undefined);
+
 // A word with a dotted underline that explains itself: hover or focus shows a definition, tap toggles it.
 // The card is portalled to <body> so text-reveal masks can't clip it.
 export function Term({ word, children, decorative = false }: { word: string; children: React.ReactNode; decorative?: boolean }) {
-  const definition = terms[word];
+  const definition = define(word);
   const isClient = useIsClient();
   const [open, setOpen] = useState(false);
   const [pos, setPos] = useState({ x: 0, y: 0, above: true });
@@ -59,9 +62,11 @@ export function Term({ word, children, decorative = false }: { word: string; chi
         // the definition is read out with the plain-text version instead.
         tabIndex={decorative ? -1 : undefined}
         aria-describedby={open ? id : undefined}
-        onMouseEnter={(e) => e.nativeEvent instanceof MouseEvent && show()}
-        onMouseLeave={() => setOpen(false)}
-        onFocus={show}
+        // Hover is for mice only, and focus only opens it for keyboard users, so on a touch screen the tap's
+        // click is the single thing that toggles it (compat mouse/focus events can't open it a moment early).
+        onPointerEnter={(e) => e.pointerType === "mouse" && show()}
+        onPointerLeave={(e) => e.pointerType === "mouse" && setOpen(false)}
+        onFocus={(e) => e.currentTarget.matches(":focus-visible") && show()}
         onBlur={() => setOpen(false)}
         onClick={() => {
           if (open) return setOpen(false);
@@ -102,13 +107,15 @@ export function Term({ word, children, decorative = false }: { word: string; chi
   );
 }
 
+const TERM_PATTERN = new RegExp(`\\b(${Object.keys(terms).join("|")})\\b`, "g");
+
 // Plain text with any glossary words turned into <Term>s.
 export function TermText({ text }: { text: string }) {
-  const pattern = new RegExp(`\\b(${Object.keys(terms).join("|")})\\b`, "g");
+  if (Object.keys(terms).length === 0) return <>{text}</>;
   return (
     <>
-      {text.split(pattern).map((part, i) =>
-        terms[part] ? (
+      {text.split(TERM_PATTERN).map((part, i) =>
+        define(part) ? (
           <Term key={i} word={part}>
             {part}
           </Term>
@@ -123,5 +130,5 @@ export function TermText({ text }: { text: string }) {
 // The glossary word a single token belongs to, ignoring punctuation ("Sanjhi," → "Sanjhi").
 export const termFor = (token: string) => {
   const bare = token.replace(/[^\p{L}]/gu, "");
-  return terms[bare] ? bare : null;
+  return define(bare) ? bare : null;
 };

@@ -17,7 +17,7 @@ const CHORD_SECONDS = 9;
 const VOLUME = 0.035;
 const FADE_IN = 4;
 
-type Pad = { master: GainNode; oscs: OscillatorNode[][] };
+type Pad = { master: GainNode; lfo: OscillatorNode; oscs: OscillatorNode[][] };
 
 function impulse(ctx: AudioContext, seconds: number) {
   const len = Math.floor(ctx.sampleRate * seconds);
@@ -72,7 +72,7 @@ function buildPad(ctx: AudioContext): Pad {
     });
   });
 
-  return { master, oscs };
+  return { master, lfo, oscs };
 }
 
 export function initAmbient() {
@@ -133,7 +133,7 @@ export function initAmbient() {
     window.clearInterval(chordTimer);
     if (pad) {
       pad.master.disconnect();
-      pad.oscs.flat().forEach((o) => o.stop());
+      [pad.lfo, ...pad.oscs.flat()].forEach((o) => o.stop());
     }
   };
 }

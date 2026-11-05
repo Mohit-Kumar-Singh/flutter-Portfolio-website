@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/content";
 import { feedback } from "@/lib/feedback";
 import { useScrollControls } from "./Experience";
@@ -12,6 +12,8 @@ import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
 export function Contact() {
   const { scrollTo } = useScrollControls();
   const [copied, setCopied] = useState(false);
+  const copiedTimer = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(copiedTimer.current), []);
 
   const copyEmail = async () => {
     try {
@@ -22,7 +24,9 @@ export function Contact() {
     }
     feedback("success");
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    // Restart the timer on every copy, so a second click doesn't get cut short by the first one's timeout.
+    window.clearTimeout(copiedTimer.current);
+    copiedTimer.current = window.setTimeout(() => setCopied(false), 2000);
   };
 
   return (
