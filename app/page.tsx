@@ -7,6 +7,7 @@ import { Journey } from "@/components/Journey";
 import { Learning } from "@/components/Learning";
 import { Nav } from "@/components/Nav";
 import { Skills } from "@/components/Skills";
+import { StickyReveal } from "@/components/StickyReveal";
 import { Work } from "@/components/Work";
 
 export default function Home() {
@@ -20,13 +21,15 @@ export default function Home() {
       </a>
       <Nav />
       <main id="main">
-        <Hero />
-        <Work />
-        <About />
-        <Art />
-        <Skills />
-        <Learning />
-        <Journey />
+        <StickyReveal>
+          <Hero />
+          <Work />
+          <About />
+          <Art />
+          <Skills />
+          <Learning />
+          <Journey />
+        </StickyReveal>
         <Contact />
       </main>
     </Experience>
