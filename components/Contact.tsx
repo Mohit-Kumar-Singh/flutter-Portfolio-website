@@ -7,7 +7,15 @@ import { feedback } from "@/lib/feedback";
 import { useScrollControls } from "./Experience";
 import { GetInTouch } from "./GetInTouch";
 import { Icon } from "./Icons";
-import { LocalTime, Magnetic, RevealText, RollLink } from "./ui";
+import { LocalTime, Magnetic, RollLink } from "./ui";
+
+// Same entrance as the reference: each block fades up 20px once when scrolled into view, a beat after the last.
+const rise = (delay: number) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "0px 0px -10% 0px" },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
+});
 
 export function Contact() {
   const { scrollTo } = useScrollControls();
@@ -30,15 +38,13 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-ink text-paper">
+    <section id="contact" className="relative z-10 bg-ink text-paper">
       <div className="flex min-h-svh flex-col justify-between px-5 pb-8 pt-32 md:px-10 md:pb-10 md:pt-40">
-        <div>
-          <h2 className="text-[13vw] leading-[0.9] tracking-[-0.04em] md:text-[9vw]">
-            <RevealText text="Say hello." />
-          </h2>
-        </div>
+        <motion.div {...rise(0)}>
+          <h2 className="text-[13vw] leading-[0.9] tracking-[-0.04em] md:text-[9vw]">Say hello.</h2>
+        </motion.div>
 
-        <div className="relative my-16 flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
+        <motion.div {...rise(0.12)} className="relative my-16 flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
           <div className="absolute inset-x-0 top-1/2 hidden h-px bg-paper/15 md:block" />
           {/* Copies the address — mailto alone does nothing on machines without a mail app. */}
           <Magnetic strength={0.4} className="relative">
@@ -70,9 +76,9 @@ export function Contact() {
             {copied ? "Email address copied" : ""}
           </span>
           <GetInTouch />
-        </div>
+        </motion.div>
 
-        <footer className="flex flex-col gap-8 text-sm md:flex-row md:items-end md:justify-between">
+        <motion.footer {...rise(0.24)} className="flex flex-col gap-8 text-sm md:flex-row md:items-end md:justify-between">
           <div className="flex gap-10">
             <div>
               <span className="mb-2 block text-xs text-paper/40">Last updated</span>
@@ -111,7 +117,7 @@ export function Contact() {
               ))}
             </div>
           </div>
-        </footer>
+        </motion.footer>
       </div>
     </section>
   );

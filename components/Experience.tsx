@@ -3,6 +3,7 @@
 import Lenis from "lenis";
 import { MotionConfig } from "motion/react";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { Cursor } from "./Cursor";
 import { Backdrop } from "./Backdrop";
 
 const LoadedContext = createContext(false);
@@ -59,6 +60,7 @@ export function Experience({ children }: { children: React.ReactNode }) {
         <ScrollContext.Provider value={controls}>
           <Backdrop />
           {children}
+          <Cursor />
         </ScrollContext.Provider>
       </LoadedContext.Provider>
     </MotionConfig>

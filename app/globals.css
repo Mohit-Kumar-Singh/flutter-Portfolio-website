@@ -63,6 +63,12 @@ body {
   color: var(--paper);
 }
 
+/* Hide the native cursor only when the custom one is active */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
 /* Lenis */
 html.lenis,
 html.lenis body {
